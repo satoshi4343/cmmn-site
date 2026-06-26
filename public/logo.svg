@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Outer black ring -->
+  <circle cx="100" cy="100" r="96" fill="black"/>
+  <!-- White inner circle -->
+  <circle cx="100" cy="100" r="78" fill="white"/>
+  <!-- Blue R -->
+  <text
+    x="100"
+    y="138"
+    font-family="Arial Black, Arial, sans-serif"
+    font-weight="900"
+    font-size="100"
+    fill="#1a3fa0"
+    text-anchor="middle"
+  >R</text>
+</svg>

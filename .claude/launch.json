@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "brand-site",
+      "runtimeExecutable": "C:\\Users\\向山　悟司\\OneDrive\\デスクトップ\\My brand site\\brand-site\\node_modules\\.bin\\next.cmd",
+      "runtimeArgs": ["dev"],
+      "cwd": "C:\\Users\\向山　悟司\\OneDrive\\デスクトップ\\My brand site\\brand-site",
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}

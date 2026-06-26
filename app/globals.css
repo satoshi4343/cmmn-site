@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #060b14;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: #ffffff;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: #ffffff;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  margin: 0;
+}
+
+/* ヒーロー商品のフローティングアニメーション */
+@keyframes cmmn-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* 商品ターンテーブル（360°回転）*/
+@keyframes cmmn-turntable {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+/* 選択時のカラーをブランドカラーに */
+::selection {
+  background: rgba(100, 140, 255, 0.2);
+  color: #ffffff;
+}
+
+/* スクロールバーを非表示（ラグジュアリー感） */
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
