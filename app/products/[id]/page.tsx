@@ -3,6 +3,7 @@
 import { use, useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { getProduct, ALL_PRODUCTS, type Product } from "../../lib/products";
+import ShopifyBuyButton from "../../components/ShopifyBuyButton";
 
 const BG = "#060b14";
 
@@ -538,6 +539,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               }}>
                 Sold Out
               </div>
+            ) : product.shopifyId ? (
+              <ShopifyBuyButton productId={product.shopifyId} />
             ) : (
               <a
                 href="https://cmmn-2.myshopify.com"

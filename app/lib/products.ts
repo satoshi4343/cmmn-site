@@ -31,6 +31,7 @@ export interface Product {
   description: string;
   detailRows: SpecRow[];
   sizeRows: SpecRow[];
+  shopifyId?: string;
 }
 
 // ─────────────────────────────────────────────────────────
@@ -88,6 +89,7 @@ const CORE: Product[] = [
       { label: "Bridge",        value: "18 mm" },
       { label: "Temple Length", value: "126 mm" },
     ],
+    shopifyId: "9262952513769",
   },
   {
     id: "core-02",
