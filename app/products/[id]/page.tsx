@@ -377,6 +377,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           <div
             style={{
               position: "relative",
+              width: "100%",
               aspectRatio: "1 / 1",
               backgroundColor: "#0e1120",
               overflow: "hidden",
