@@ -527,6 +527,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           {/* CTA ボタン */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.7rem", marginBottom: "2.2rem" }}>
             {isSoldOut ? (
+              /* SOLD OUT */
               <div style={{
                 display: "block", padding: "1.05rem",
                 backgroundColor: "rgba(255,255,255,0.06)",
@@ -539,49 +540,54 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               }}>
                 Sold Out
               </div>
-            ) : product.shopifyId ? (
-              <ShopifyBuyButton productId={product.shopifyId} />
             ) : (
-              <a
-                href="https://cmmn-2.myshopify.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "block", padding: "1.05rem",
-                  backgroundColor: "#ffffff", color: "#060b14",
-                  textAlign: "center", fontSize: "0.52rem",
-                  letterSpacing: "0.55em", textTransform: "uppercase",
-                  fontWeight: 700, textDecoration: "none",
-                  borderRadius: "2px", transition: "background-color 0.25s ease",
-                }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.88)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "#ffffff")}
-              >
-                Buy Now
-              </a>
+              <>
+                {/* Buy Now — Shopify直接遷移 */}
+                <a
+                  href="https://vusyw0-rc.myshopify.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "block", padding: "1.05rem",
+                    backgroundColor: "#ffffff", color: "#060b14",
+                    textAlign: "center", fontSize: "0.52rem",
+                    letterSpacing: "0.55em", textTransform: "uppercase",
+                    fontWeight: 700, textDecoration: "none",
+                    borderRadius: "2px", transition: "background-color 0.25s ease",
+                  }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.88)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "#ffffff")}
+                >
+                  Buy Now
+                </a>
+                {/* Add to Cart — Shopify SDK（ページ遷移なし）またはフォールバック */}
+                {product.shopifyId ? (
+                  <ShopifyBuyButton productId={product.shopifyId} />
+                ) : (
+                  <a
+                    href="https://vusyw0-rc.myshopify.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "block", padding: "1rem",
+                      backgroundColor: "transparent",
+                      color: "rgba(255,255,255,0.5)",
+                      textAlign: "center", fontSize: "0.5rem",
+                      letterSpacing: "0.52em", textTransform: "uppercase",
+                      fontWeight: 300, textDecoration: "none",
+                      border: "1px solid rgba(255,255,255,0.14)",
+                      borderRadius: "2px",
+                      cursor: "pointer",
+                      transition: "border-color 0.25s, color 0.25s",
+                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.38)"; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.85)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.14)"; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+                  >
+                    Add to Cart
+                  </a>
+                )}
+              </>
             )}
-            <a
-              href={isSoldOut ? undefined : "https://cmmn-2.myshopify.com"}
-              target={isSoldOut ? undefined : "_blank"}
-              rel="noopener noreferrer"
-              onClick={isSoldOut ? e => e.preventDefault() : undefined}
-              style={{
-                display: "block", padding: "1rem",
-                backgroundColor: "transparent",
-                color: isSoldOut ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.5)",
-                textAlign: "center", fontSize: "0.5rem",
-                letterSpacing: "0.52em", textTransform: "uppercase",
-                fontWeight: 300, textDecoration: "none",
-                border: `1px solid ${isSoldOut ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.14)"}`,
-                borderRadius: "2px",
-                cursor: isSoldOut ? "not-allowed" : "pointer",
-                transition: "border-color 0.25s, color 0.25s",
-              }}
-              onMouseEnter={e => { if (!isSoldOut) { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.38)"; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.85)"; } }}
-              onMouseLeave={e => { if (!isSoldOut) { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.14)"; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; } }}
-            >
-              Add to Cart
-            </a>
           </div>
 
           {/* 区切り */}
