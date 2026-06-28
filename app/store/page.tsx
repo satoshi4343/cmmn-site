@@ -7,37 +7,40 @@ const StoreScene = dynamic(() => import("../components/StoreScene"), { ssr: fals
 
 export default function StorePage() {
   return (
-    <main className="relative w-screen h-screen bg-black overflow-hidden">
-      {/* 3D store */}
-      <StoreScene />
+    <div style={{ width: "100vw", height: "100vh", backgroundColor: "#111", position: "relative", overflow: "hidden" }}>
 
-      {/* Top-left: back to home */}
-      <div className="absolute top-6 left-6 z-20">
-        <Link
-          href="/"
-          className="text-xs tracking-[0.3em] text-white/40 uppercase hover:text-white/80 transition-colors"
+      {/* 左上 — Exit */}
+      <div style={{ position: "absolute", top: "1.5rem", left: "1.5rem", zIndex: 20 }}>
+        <Link href="/" style={{
+          color: "rgba(255,255,255,0.45)", fontSize: "0.46rem", letterSpacing: "0.45em",
+          textTransform: "uppercase", textDecoration: "none",
+        }}
+          onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "#fff")}
+          onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.45)")}
         >
-          ← Home
+          ← Exit Store
         </Link>
       </div>
 
-      {/* Top-right: brand */}
-      <div className="absolute top-6 right-6 z-20 text-right">
-        <p className="text-xs tracking-[0.4em] text-white/30 uppercase">CMMN.</p>
-        <p className="text-xs tracking-[0.2em] text-white/20 uppercase">Store</p>
+      {/* 中央上 — ブランド */}
+      <div style={{ position: "absolute", top: "1.4rem", left: "50%", transform: "translateX(-50%)", zIndex: 20 }}>
+        <span style={{ color: "#fff", fontSize: "1rem", fontWeight: 900, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+          CMMN.
+        </span>
       </div>
 
-      {/* Center hint – disappears on click */}
-      <div
-        className="absolute inset-0 z-10 flex flex-col items-center justify-end pb-16 pointer-events-none"
-      >
-        <p className="text-xs tracking-[0.4em] text-white/40 uppercase animate-pulse">
-          Click to look around
-        </p>
-        <p className="mt-2 text-xs tracking-[0.2em] text-white/20 uppercase">
-          Move mouse to explore
+      {/* 下 — 操作ヒント */}
+      <div style={{
+        position: "absolute", bottom: "1.8rem", left: "50%", transform: "translateX(-50%)",
+        zIndex: 20, textAlign: "center", pointerEvents: "none",
+      }}>
+        <p style={{ color: "rgba(255,255,255,0.28)", fontSize: "0.43rem", letterSpacing: "0.4em", textTransform: "uppercase", margin: 0 }}>
+          Drag to look around · Click product to view
         </p>
       </div>
-    </main>
+
+      {/* 3Dシーン */}
+      <StoreScene />
+    </div>
   );
 }
