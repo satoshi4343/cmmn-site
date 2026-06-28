@@ -542,48 +542,29 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               </div>
             ) : (
               <>
-                {/* Buy Now — Shopify直接遷移 */}
-                <a
-                  href="https://vusyw0-rc.myshopify.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "block", padding: "1.05rem",
-                    backgroundColor: "#ffffff", color: "#060b14",
-                    textAlign: "center", fontSize: "0.52rem",
-                    letterSpacing: "0.55em", textTransform: "uppercase",
-                    fontWeight: 700, textDecoration: "none",
-                    borderRadius: "2px", transition: "background-color 0.25s ease",
-                  }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.88)")}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "#ffffff")}
-                >
-                  Buy Now
-                </a>
-                {/* Add to Cart — Shopify SDK（ページ遷移なし）またはフォールバック */}
+                {/* Buy Now / Add to Cart — ShopifySDK（shopifyIdがある商品）またはフォールバック */}
                 {product.shopifyId ? (
-                  <ShopifyBuyButton productId={product.shopifyId} />
+                  <>
+                    <ShopifyBuyButton productId={product.shopifyId} buyNow />
+                    <ShopifyBuyButton productId={product.shopifyId} />
+                  </>
                 ) : (
                   <a
                     href="https://vusyw0-rc.myshopify.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      display: "block", padding: "1rem",
-                      backgroundColor: "transparent",
-                      color: "rgba(255,255,255,0.5)",
-                      textAlign: "center", fontSize: "0.5rem",
-                      letterSpacing: "0.52em", textTransform: "uppercase",
-                      fontWeight: 300, textDecoration: "none",
-                      border: "1px solid rgba(255,255,255,0.14)",
-                      borderRadius: "2px",
-                      cursor: "pointer",
-                      transition: "border-color 0.25s, color 0.25s",
+                      display: "block", padding: "1.05rem",
+                      backgroundColor: "#ffffff", color: "#060b14",
+                      textAlign: "center", fontSize: "0.52rem",
+                      letterSpacing: "0.55em", textTransform: "uppercase",
+                      fontWeight: 700, textDecoration: "none",
+                      borderRadius: "2px", transition: "background-color 0.25s ease",
                     }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.38)"; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.85)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.14)"; (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.88)")}
+                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.backgroundColor = "#ffffff")}
                   >
-                    Add to Cart
+                    Buy Now
                   </a>
                 )}
               </>

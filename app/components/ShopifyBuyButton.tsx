@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 interface Props {
   productId: string;
+  buyNow?: boolean;
 }
 
 const DOMAIN = "vusyw0-rc.myshopify.com";
@@ -15,9 +16,9 @@ declare global {
   }
 }
 
-export default function ShopifyBuyButton({ productId }: Props) {
+export default function ShopifyBuyButton({ productId, buyNow = false }: Props) {
   const nodeRef = useRef<HTMLDivElement>(null);
-  const componentId = `product-component-${productId}`;
+  const componentId = `product-component-${productId}-${buyNow ? "buy" : "cart"}`;
 
   useEffect(() => {
     if (!nodeRef.current) return;
@@ -47,8 +48,9 @@ export default function ShopifyBuyButton({ productId }: Props) {
                   ":focus": { "background-color": "rgba(255,255,255,0.88)" },
                 },
               },
+              buttonDestination: buyNow ? "checkout" : "cart",
               contents: { img: false, title: false, price: false, options: false },
-              text: { button: "ADD TO CART" },
+              text: { button: buyNow ? "BUY NOW" : "ADD TO CART" },
             },
             cart: {
               styles: {
