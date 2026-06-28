@@ -47,7 +47,7 @@ export default function ShopifyBuyButton({ productId }: Props) {
                   ":focus": { "background-color": "rgba(255,255,255,0.88)" },
                 },
               },
-              contents: { img: false, title: false, price: false },
+              contents: { img: false, title: false, price: false, options: false },
               text: { button: "ADD TO CART" },
             },
             cart: {
