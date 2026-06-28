@@ -301,7 +301,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const isSoldOut = !!variant?.soldOut;
 
   return (
-    <main style={{ backgroundColor: BG, minHeight: "100vh", color: "#fff", fontFamily: "inherit" }}>
+    <main style={{ backgroundColor: BG, minHeight: "100vh", color: "#fff", fontFamily: "inherit", overflowX: "hidden" }}>
 
       {/* ─ ナビゲーション ─────────────────────────────────── */}
       <nav style={{

@@ -260,7 +260,7 @@ export default function ShowroomSection() {
         {/* 商品グリッド */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
+          gridTemplateColumns: "repeat(auto-fill, minmax(min(160px, 100%), 1fr))",
           gap: "clamp(1.2rem,3vw,2.5rem) clamp(0.8rem,2vw,1.8rem)",
           opacity: fading ? 0 : 1,
           transition: "opacity 0.18s ease",
