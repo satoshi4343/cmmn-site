@@ -66,7 +66,7 @@ export default function ShopifyBuyButton({ productId, buyNow = false }: Props) {
               },
               text: { total: "Subtotal", button: "CHECKOUT" },
             },
-            toggle: {
+            toggle: buyNow ? { contents: { count: false } } : {
               styles: {
                 toggle: { "background-color": "#ffffff" },
                 count: { "color": "#060b14" },
