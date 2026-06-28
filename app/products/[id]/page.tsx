@@ -354,7 +354,13 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       </div>
 
       {/* ─ メインレイアウト ───────────────────────────────── */}
-      <div style={{
+      <style>{`
+        @media (max-width: 700px) {
+          .product-grid { grid-template-columns: 1fr !important; }
+          .product-img-sticky { position: static !important; }
+        }
+      `}</style>
+      <div className="product-grid" style={{
         display: "grid",
         gridTemplateColumns: "58fr 42fr",
         gap: "clamp(2rem,5vw,6rem)",
@@ -365,7 +371,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       }}>
 
         {/* ── LEFT: 画像パネル（sticky） ─────────────────── */}
-        <div style={{ position: "sticky", top: "calc(56px + 2rem)" }}>
+        <div className="product-img-sticky" style={{ position: "sticky", top: "calc(56px + 2rem)" }}>
 
           {/* メイン画像 */}
           <div
