@@ -388,7 +388,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               <img
                 src={variant.image}
                 alt={`${product.code} ${variant.label}`}
-                style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", padding: "clamp(2rem,5vw,4rem)" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
               />
             ) : (
