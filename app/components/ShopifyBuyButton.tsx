@@ -34,7 +34,7 @@ export default function ShopifyBuyButton({ productId, buyNow = false }: Props) {
             product: {
               styles: {
                 product: { "max-width": "100%", "margin-left": "0", "margin-bottom": "0" },
-                button: {
+                button: { "width": "100%",
                   "font-family": "inherit",
                   "font-size": "0.58rem",
                   "letter-spacing": "0.45em",
@@ -89,5 +89,9 @@ export default function ShopifyBuyButton({ productId, buyNow = false }: Props) {
     }
   }, [productId, componentId]);
 
-  return <div id={componentId} ref={nodeRef} />;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div id={componentId} ref={nodeRef} style={{ width: "100%" }} />
+    </div>
+  );
 }
