@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 const linkStyle: React.CSSProperties = {
   color: "rgba(255,255,255,0.62)",
@@ -15,18 +16,25 @@ const linkStyle: React.CSSProperties = {
 };
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <>
       <style>{`
         .nav-links { display: flex; }
-        @media (max-width: 600px) { .nav-links { display: none !important; } }
+        .nav-hamburger { display: none; }
+        @media (max-width: 600px) {
+          .nav-links { display: none !important; }
+          .nav-hamburger { display: flex !important; }
+        }
       `}</style>
+
       <nav
         style={{
           position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
+          top: 0, left: 0, right: 0,
           zIndex: 100,
           display: "flex",
           alignItems: "center",
@@ -36,7 +44,7 @@ export default function Navbar() {
           background: "linear-gradient(to bottom, rgba(6,11,20,0.55) 0%, transparent 100%)",
         }}
       >
-        {/* 左 */}
+        {/* 左 — デスクトップ */}
         <div className="nav-links" style={{ gap: "clamp(1.5rem, 3vw, 3rem)" }}>
           <a
             href="/"
@@ -66,6 +74,32 @@ export default function Navbar() {
           </a>
         </div>
 
+        {/* 左 — モバイル ハンバーガー */}
+        <button
+          className="nav-hamburger"
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Menu"
+          style={{
+            background: "none", border: "none", cursor: "pointer",
+            padding: "0.4rem", display: "flex", flexDirection: "column",
+            gap: "5px", alignItems: "center", justifyContent: "center",
+          }}
+        >
+          {[0, 1, 2].map(i => (
+            <span key={i} style={{
+              display: "block", width: "22px", height: "1.5px",
+              backgroundColor: "#ffffff",
+              transition: "transform 0.3s ease, opacity 0.3s ease",
+              transform: menuOpen
+                ? i === 0 ? "translateY(6.5px) rotate(45deg)"
+                : i === 2 ? "translateY(-6.5px) rotate(-45deg)"
+                : "scaleX(0)"
+                : "none",
+              opacity: menuOpen && i === 1 ? 0 : 1,
+            }} />
+          ))}
+        </button>
+
         {/* 中央 — CMMN. ロゴ */}
         <Link
           href="/"
@@ -84,7 +118,7 @@ export default function Navbar() {
           CMMN.
         </Link>
 
-        {/* 右 */}
+        {/* 右 — デスクトップ */}
         <div className="nav-links" style={{ gap: "clamp(1.5rem, 3vw, 3rem)" }}>
           {[["ABOUT US", "/about"], ["CONTACT", "/contact"]].map(([label, href]) => (
             <Link
@@ -98,7 +132,68 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
+
+        {/* 右 — モバイル スペーサー（CMMN.を中央に保つ） */}
+        <div className="nav-hamburger" style={{ width: "30px" }} />
       </nav>
+
+      {/* モバイル メニューオーバーレイ */}
+      {menuOpen && (
+        <div
+          onClick={closeMenu}
+          style={{
+            position: "fixed", inset: 0, zIndex: 99,
+            backgroundColor: "rgba(6,11,20,0.96)",
+            backdropFilter: "blur(12px)",
+            display: "flex", flexDirection: "column",
+            justifyContent: "center",
+            padding: "0 2.5rem",
+          }}
+        >
+          {[
+            ["HOME", "/", true],
+            ["COLLECTIONS", "/#collection", false],
+            ["ABOUT US", "/about", false],
+            ["CONTACT", "/contact", false],
+          ].map(([label, href, isScroll], i) => (
+            <a
+              key={label as string}
+              href={href as string}
+              onClick={e => {
+                if (isScroll && window.location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else if (href === "/#collection") {
+                  e.preventDefault();
+                  closeMenu();
+                  setTimeout(() => {
+                    const el = document.getElementById("collection");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }, 50);
+                  return;
+                }
+                closeMenu();
+              }}
+              style={{
+                color: "rgba(255,255,255,0.78)",
+                fontSize: "clamp(1.6rem, 7vw, 2.4rem)",
+                fontWeight: 800,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                padding: "1rem 0",
+                borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.07)" : "none",
+                display: "block",
+                transition: "color 0.15s ease",
+              }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = "#ffffff")}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.78)")}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      )}
     </>
   );
 }
