@@ -152,7 +152,7 @@ export default function Navbar() {
         >
           {[
             ["HOME", "/", true],
-            ["COLLECTIONS", "/#collection", false],
+            ["COLLECTIONS", "/collections", false],
             ["ABOUT US", "/about", false],
             ["CONTACT", "/contact", false],
           ].map(([label, href, isScroll], i) => (
