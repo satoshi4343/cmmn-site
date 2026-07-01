@@ -285,7 +285,7 @@ export default function Home() {
                   Bold oval frame.<br />Sporty streetwear.
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem", letterSpacing: "0.06em", fontWeight: 300, margin: "0 0 1.6rem" }}>
-                  ¥5,980
+                  ¥4,980
                 </p>
                 <span style={{
                   display: "inline-block",

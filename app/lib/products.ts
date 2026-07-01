@@ -308,7 +308,7 @@ const VOID: Product[] = [
     number: "01",
     code: "VOID / 01",
     tagline: "Bold goggle-style sunglasses with a futuristic outdoor look.",
-    price: "¥5,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Silver Frame / Grey Lens",      image: "/products/void-01-c1.png" },
@@ -336,7 +336,7 @@ const VOID: Product[] = [
     number: "02",
     code: "VOID / 02",
     tagline: "Oval Y2K sunglasses designed for outdoor style and daily protection.",
-    price: "¥5,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Frame / Black-Grey Lens",  image: "/products/void-02-c1.jpg" },
@@ -364,7 +364,7 @@ const VOID: Product[] = [
     number: "03",
     code: "VOID / 03",
     tagline: "Oval Y2K sunglasses with a futuristic steampunk-inspired look.",
-    price: "¥5,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Frame / Grey Lens",        image: "/products/void-03-c1.jpg" },
@@ -398,7 +398,7 @@ const VOID: Product[] = [
     number: "04",
     code: "VOID / 04",
     tagline: "Y2K goggle-style sunglasses with a bold oval frame for sporty streetwear.",
-    price: "¥5,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Bright Black Frame / Black Lens",      image: "/products/void-04-c1.jpg" },
