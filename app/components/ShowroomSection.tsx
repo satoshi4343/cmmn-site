@@ -4,9 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { SERIES_LIST, SERIES_META, getSeriesProducts, type Series, type Product } from "../lib/products";
 
-// ─────────────────────────────────────────────────────────
-//  Reveal
-// ─────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [v, setV] = useState(false);
@@ -26,9 +23,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
-// ─────────────────────────────────────────────────────────
-//  商品カード
-// ─────────────────────────────────────────────────────────
+// ─── 商品カード ────────────────────────────────────────────
 function ProductCard({ product, index }: { product: Product; index: number }) {
   const [hovered, setHovered] = useState(false);
   const [variantIdx, setVariantIdx] = useState(product.defaultVariantIndex);
@@ -40,32 +35,15 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
   return (
     <Reveal delay={index * 55}>
-      <div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{ cursor: "pointer" }}
-      >
-        {/* 商品画像エリア — クリックで詳細へ */}
+      <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{ cursor: "pointer" }}>
+
         <Link href={`/products/${product.id}`} style={{ textDecoration: "none", display: "block" }}>
           <div style={{
-            position: "relative",
-            aspectRatio: "1 / 1",
-            backgroundColor: "#0d1120",
-            overflow: "hidden",
-            marginBottom: "0.7rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            position: "relative", aspectRatio: "1 / 1",
+            backgroundColor: "#f5f5f5",
+            overflow: "hidden", marginBottom: "0.7rem",
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}>
-            {/* 頭上光 */}
-            <div style={{
-              position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
-              width: "80%", height: "65%",
-              background: `radial-gradient(ellipse 60% 55% at 50% 0%, rgba(255,255,255,${hovered ? 0.048 : 0.022}) 0%, transparent 70%)`,
-              transition: "background 0.7s ease",
-              pointerEvents: "none", zIndex: 1,
-            }} />
-
             {showImg ? (
               <img
                 src={currentImg}
@@ -85,28 +63,19 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 }}
               />
             ) : (
-              <span style={{
-                color: "rgba(255,255,255,0.06)",
-                fontSize: "0.46rem",
-                letterSpacing: "0.55em",
-                textTransform: "uppercase",
-                fontWeight: 300,
-                userSelect: "none",
-              }}>
+              <span style={{ color: "rgba(0,0,0,0.15)", fontSize: "0.46rem", letterSpacing: "0.55em", textTransform: "uppercase", fontWeight: 300, userSelect: "none" }}>
                 {product.code}
               </span>
             )}
-
-            {/* ホバー下線 */}
             <div style={{
               position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
-              background: hovered ? "rgba(255,255,255,0.12)" : "transparent",
+              background: hovered ? "rgba(0,0,0,0.1)" : "transparent",
               transition: "background 0.4s ease",
             }} />
           </div>
         </Link>
 
-        {/* カラードット — 画像があるときのみ表示 */}
+        {/* カラードット */}
         {hasVariants && (
           <div style={{ display: "flex", gap: "0.38rem", marginBottom: "0.85rem" }}>
             {product.variants.map((v, i) => (
@@ -119,11 +88,9 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                   height: "0.38rem",
                   borderRadius: "999px",
                   backgroundColor: v.soldOut
-                    ? (i === variantIdx ? "rgba(255,80,80,0.4)" : "rgba(255,255,255,0.08)")
-                    : (i === variantIdx ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.2)"),
-                  border: "none",
-                  cursor: v.image ? "pointer" : "default",
-                  padding: 0,
+                    ? (i === variantIdx ? "rgba(200,50,50,0.35)" : "rgba(0,0,0,0.1)")
+                    : (i === variantIdx ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0.18)"),
+                  border: "none", cursor: v.image ? "pointer" : "default", padding: 0,
                   transition: "width 0.3s ease, background-color 0.25s ease",
                   opacity: v.image ? (v.soldOut ? 0.5 : 1) : 0.3,
                 }}
@@ -134,11 +101,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
         {/* テキスト */}
         <Link href={`/products/${product.id}`} style={{ textDecoration: "none", display: "block" }}>
-          <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.46rem", letterSpacing: "0.52em", textTransform: "uppercase", fontWeight: 300, margin: "0 0 0.28rem" }}>
+          <p style={{ color: "rgba(0,0,0,0.3)", fontSize: "0.46rem", letterSpacing: "0.52em", textTransform: "uppercase", fontWeight: 300, margin: "0 0 0.28rem" }}>
             {product.code}
           </p>
           <p style={{
-            color: hovered ? "#ffffff" : "rgba(255,255,255,0.78)",
+            color: hovered ? "#000000" : "rgba(0,0,0,0.75)",
             fontSize: "clamp(0.9rem,1.8vw,1.15rem)",
             fontWeight: 700, letterSpacing: "0.07em",
             textTransform: "uppercase", margin: "0 0 0.3rem",
@@ -146,15 +113,15 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           }}>
             {product.series} {product.number}
           </p>
-          <p style={{ color: "rgba(255,255,255,0.28)", fontSize: "0.58rem", letterSpacing: "0.04em", fontWeight: 300, margin: "0 0 0.65rem", lineHeight: 1.5 }}>
+          <p style={{ color: "rgba(0,0,0,0.35)", fontSize: "0.58rem", letterSpacing: "0.04em", fontWeight: 300, margin: "0 0 0.65rem", lineHeight: 1.5 }}>
             {product.tagline}
           </p>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.68rem", letterSpacing: "0.07em", fontWeight: 300 }}>
+            <span style={{ color: "rgba(0,0,0,0.5)", fontSize: "0.68rem", letterSpacing: "0.07em", fontWeight: 300 }}>
               {product.price}
             </span>
             <span style={{
-              color: hovered ? "rgba(255,255,255,0.65)" : "transparent",
+              color: hovered ? "rgba(0,0,0,0.5)" : "transparent",
               fontSize: "0.42rem", letterSpacing: "0.45em", textTransform: "uppercase", fontWeight: 400,
               transition: "color 0.25s ease",
             }}>
@@ -167,26 +134,21 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
   );
 }
 
-// ─────────────────────────────────────────────────────────
-//  タブバー
-// ─────────────────────────────────────────────────────────
+// ─── タブバー ─────────────────────────────────────────────
 function SeriesTabs({ active, onChange }: { active: Series; onChange: (s: Series) => void }) {
   return (
-    <div style={{ display: "flex", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+    <div style={{ display: "flex", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
       {SERIES_LIST.map(s => {
         const isActive = s === active;
         return (
           <button key={s} onClick={() => onChange(s)} style={{
-            background: "none",
-            border: "none",
-            borderBottom: `2px solid ${isActive ? "rgba(255,255,255,0.82)" : "transparent"}`,
+            background: "none", border: "none",
+            borderBottom: `2px solid ${isActive ? "#111" : "transparent"}`,
             marginBottom: "-1px",
             padding: "0.85rem clamp(1.2rem,3.5vw,2.8rem)",
             cursor: "pointer",
-            color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.26)",
-            fontSize: "0.58rem",
-            letterSpacing: "0.55em",
-            textTransform: "uppercase",
+            color: isActive ? "#111" : "rgba(0,0,0,0.28)",
+            fontSize: "0.58rem", letterSpacing: "0.55em", textTransform: "uppercase",
             fontWeight: isActive ? 600 : 300,
             fontFamily: "inherit",
             transition: "color 0.25s, border-color 0.25s",
@@ -199,9 +161,7 @@ function SeriesTabs({ active, onChange }: { active: Series; onChange: (s: Series
   );
 }
 
-// ─────────────────────────────────────────────────────────
-//  メインエクスポート
-// ─────────────────────────────────────────────────────────
+// ─── メインエクスポート ───────────────────────────────────
 export default function ShowroomSection() {
   const [activeSeries, setActiveSeries] = useState<Series>("ALL");
   const [fading, setFading] = useState(false);
@@ -216,32 +176,28 @@ export default function ShowroomSection() {
   };
 
   return (
-    <section id="collection" style={{ backgroundColor: "#060b14" }}>
+    <section id="collection" style={{ backgroundColor: "#ffffff" }}>
 
       {/* ── NEW ARRIVALS ヘッダー ── */}
       <Reveal>
         <div style={{
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid rgba(0,0,0,0.08)",
           padding: "clamp(4rem,8vw,7rem) clamp(1.5rem,6vw,6rem) clamp(2.5rem,4vw,4rem)",
         }}>
           <h2 style={{
-            color: "#ffffff",
+            color: "#111111",
             fontSize: "clamp(2.8rem,8vw,7rem)",
-            fontWeight: 900,
-            letterSpacing: "0.03em",
-            lineHeight: 0.9,
-            textTransform: "uppercase",
+            fontWeight: 900, letterSpacing: "0.03em",
+            lineHeight: 0.9, textTransform: "uppercase",
             marginBottom: "1.6rem",
           }}>
             New<br />Arrivals.
           </h2>
           <p style={{
-            color: "rgba(255,255,255,0.22)",
+            color: "rgba(0,0,0,0.38)",
             fontSize: "clamp(0.65rem,1vw,0.8rem)",
-            letterSpacing: "0.12em",
-            lineHeight: 2,
-            fontWeight: 300,
-            maxWidth: "22rem",
+            letterSpacing: "0.12em", lineHeight: 2,
+            fontWeight: 300, maxWidth: "22rem",
           }}>
             Sharp silhouettes. Cold energy.<br />
             Y2K, redefined for now.
@@ -252,45 +208,42 @@ export default function ShowroomSection() {
       {/* ── タブ + グリッド ── */}
       <Reveal>
         <div style={{ padding: "0 clamp(1.5rem,6vw,6rem) clamp(3rem,6vw,5rem)" }}>
-        {/* タブ */}
-        <div style={{ marginBottom: "clamp(1.5rem,3vw,2.5rem)" }}>
-          <SeriesTabs active={activeSeries} onChange={handleTabChange} />
-        </div>
+          <div style={{ marginBottom: "clamp(1.5rem,3vw,2.5rem)" }}>
+            <SeriesTabs active={activeSeries} onChange={handleTabChange} />
+          </div>
 
-        {/* 商品グリッド */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(min(160px, 100%), 1fr))",
-          gap: "clamp(1.2rem,3vw,2.5rem) clamp(0.8rem,2vw,1.8rem)",
-          opacity: fading ? 0 : 1,
-          transition: "opacity 0.18s ease",
-        }}>
-          {products.map((p, i) => (
-            <ProductCard key={p.id} product={p} index={i} />
-          ))}
-        </div>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(160px, 100%), 1fr))",
+            gap: "clamp(1.2rem,3vw,2.5rem) clamp(0.8rem,2vw,1.8rem)",
+            opacity: fading ? 0 : 1,
+            transition: "opacity 0.18s ease",
+          }}>
+            {products.map((p, i) => (
+              <ProductCard key={p.id} product={p} index={i} />
+            ))}
+          </div>
 
-        {/* フッターリンク */}
-        <div style={{
-          marginTop: "clamp(3.5rem,7vw,6rem)",
-          paddingTop: "clamp(1.5rem,3vw,2.5rem)",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem",
-        }}>
-          <span style={{ color: "rgba(255,255,255,0.16)", fontSize: "0.5rem", letterSpacing: "0.4em", textTransform: "uppercase", fontWeight: 300 }}>
-            12 styles · 3 series
-          </span>
-          <Link
-            href="/store"
-            style={{ textDecoration: "none", opacity: 0.38, transition: "opacity 0.4s" }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "0.38")}
-          >
-            <span style={{ color: "#fff", fontSize: "0.52rem", letterSpacing: "0.52em", textTransform: "uppercase", fontWeight: 600 }}>
-              Enter 3D Store →
+          <div style={{
+            marginTop: "clamp(3.5rem,7vw,6rem)",
+            paddingTop: "clamp(1.5rem,3vw,2.5rem)",
+            borderTop: "1px solid rgba(0,0,0,0.08)",
+            display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem",
+          }}>
+            <span style={{ color: "rgba(0,0,0,0.25)", fontSize: "0.5rem", letterSpacing: "0.4em", textTransform: "uppercase", fontWeight: 300 }}>
+              12 styles · 3 series
             </span>
-          </Link>
-        </div>
+            <Link
+              href="/store"
+              style={{ textDecoration: "none", opacity: 0.45, transition: "opacity 0.4s" }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "0.45")}
+            >
+              <span style={{ color: "#111", fontSize: "0.52rem", letterSpacing: "0.52em", textTransform: "uppercase", fontWeight: 600 }}>
+                Enter 3D Store →
+              </span>
+            </Link>
+          </div>
         </div>
       </Reveal>
     </section>
