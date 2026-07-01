@@ -221,67 +221,84 @@ export default function Home() {
           </p>
         </Reveal>
 
-        {/* ── 商品ターンテーブル ── */}
+        {/* ── おすすめ商品 ── */}
         <Reveal delay={400}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "clamp(5rem, 10vw, 8rem)",
-              perspective: "900px",
-              position: "relative",
-            }}
-          >
-            {/* 背景グロー：商品の後方をわずかに明るくして空間に溶け込ませる */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(80,105,160,0.09) 0%, transparent 70%)",
-                pointerEvents: "none",
-              }}
-            />
+          <div style={{ marginTop: "clamp(5rem, 10vw, 8rem)" }}>
+            {/* ラベル */}
+            <p style={{
+              color: "rgba(255,255,255,0.2)",
+              fontSize: "0.48rem",
+              letterSpacing: "0.6em",
+              textTransform: "uppercase",
+              fontWeight: 300,
+              marginBottom: "2rem",
+            }}>
+              Our Pick
+            </p>
 
-            <Link href="/products/core-03" style={{ display: "block", cursor: "pointer", position: "relative" }}>
-              {/* 接地影 */}
-              <div
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  bottom: "-4%",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "55%",
-                  height: "6%",
-                  background: "radial-gradient(ellipse, rgba(0,0,0,0.55) 0%, transparent 70%)",
-                  filter: "blur(10px)",
+            <Link href="/products/kova-03" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "clamp(2rem, 6vw, 5rem)" }}>
+              {/* 商品画像 */}
+              <div style={{
+                flexShrink: 0,
+                width: "clamp(10rem, 28vw, 20rem)",
+                aspectRatio: "1 / 1",
+                backgroundColor: "#0d1120",
+                overflow: "hidden",
+                position: "relative",
+              }}>
+                <div aria-hidden="true" style={{
+                  position: "absolute", inset: 0,
+                  background: "radial-gradient(ellipse 70% 60% at 50% 30%, rgba(80,105,160,0.12) 0%, transparent 70%)",
                   pointerEvents: "none",
-                  zIndex: 0,
-                }}
-              />
-
-              {/* 回転する商品 */}
-              <div
-                style={{
-                  animation: "cmmn-turntable 15s linear infinite",
-                  transformStyle: "preserve-3d",
-                  width: "clamp(14rem, 30vw, 22rem)",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
+                }} />
                 <img
-                  src="/products/core-03-c1-nobg.png"
-                  alt="CORE / 03"
+                  src="/products/kova-03-c1.jpg"
+                  alt="KOVA / 03"
                   style={{
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "contain",
+                    width: "100%", height: "100%",
+                    objectFit: "cover",
                     display: "block",
-                    filter: "brightness(0.92) contrast(1.06) drop-shadow(0 8px 24px rgba(0,0,0,0.45))",
+                    transition: "transform 0.8s cubic-bezier(0.16,1,0.3,1)",
                   }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
+                  onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
                 />
+              </div>
+
+              {/* テキスト */}
+              <div>
+                <p style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.44rem", letterSpacing: "0.5em", textTransform: "uppercase", fontWeight: 300, margin: "0 0 0.6rem" }}>
+                  KOVA / 03
+                </p>
+                <h3 style={{
+                  color: "#ffffff",
+                  fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
+                  fontWeight: 900,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  lineHeight: 0.95,
+                  margin: "0 0 1.2rem",
+                }}>
+                  KOVA<br />03.
+                </h3>
+                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "clamp(0.65rem, 1vw, 0.8rem)", letterSpacing: "0.06em", lineHeight: 1.8, fontWeight: 300, margin: "0 0 1.8rem", maxWidth: "16rem" }}>
+                  Bold oval frame.<br />Sporty streetwear.
+                </p>
+                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem", letterSpacing: "0.06em", fontWeight: 300, margin: "0 0 1.6rem" }}>
+                  ¥5,980
+                </p>
+                <span style={{
+                  display: "inline-block",
+                  color: "rgba(255,255,255,0.55)",
+                  fontSize: "0.46rem",
+                  letterSpacing: "0.5em",
+                  textTransform: "uppercase",
+                  fontWeight: 400,
+                  borderBottom: "1px solid rgba(255,255,255,0.2)",
+                  paddingBottom: "0.15rem",
+                }}>
+                  View →
+                </span>
               </div>
             </Link>
           </div>
