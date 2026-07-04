@@ -552,8 +552,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 {/* Buy Now / Add to Cart — ShopifySDK（shopifyIdがある商品）またはフォールバック */}
                 {product.shopifyId ? (
                   <>
-                    <ShopifyBuyButton productId={product.shopifyId} buyNow />
-                    <ShopifyBuyButton productId={product.shopifyId} />
+                    <ShopifyBuyButton productId={product.shopifyId} buyNow variantIndex={variantIdx} />
+                    <ShopifyBuyButton productId={product.shopifyId} variantIndex={variantIdx} />
                   </>
                 ) : (
                   <a
