@@ -17,30 +17,77 @@ declare global {
   }
 }
 
+async function fetchVariantId(productId: string, variantIndex: number): Promise<string | null> {
+  try {
+    const res = await fetch(`https://${DOMAIN}/api/2024-01/graphql.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": TOKEN,
+      },
+      body: JSON.stringify({
+        query: `{
+          product(id: "gid://shopify/Product/${productId}") {
+            variants(first: 20) {
+              edges { node { id } }
+            }
+          }
+        }`,
+      }),
+    });
+    const json = await res.json();
+    const edges = json?.data?.product?.variants?.edges ?? [];
+    const node = edges[variantIndex] ?? edges[0];
+    // GID形式 "gid://shopify/ProductVariant/12345" → "12345"
+    const gid: string = node?.node?.id ?? "";
+    return gid.split("/").pop() ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function loadSDK(callback: () => void) {
+  if (window.ShopifyBuy?.UI) {
+    callback();
+    return;
+  }
+  // avoid duplicate script tags
+  if (document.querySelector('script[data-shopify-buy-sdk]')) {
+    document.querySelector('script[data-shopify-buy-sdk]')!.addEventListener("load", callback);
+    return;
+  }
+  const script = document.createElement("script");
+  script.async = true;
+  script.setAttribute("data-shopify-buy-sdk", "1");
+  script.src = "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
+  script.onload = callback;
+  document.head.appendChild(script);
+}
+
 export default function ShopifyBuyButton({ productId, buyNow = false, variantIndex = 0 }: Props) {
   const nodeRef = useRef<HTMLDivElement>(null);
-  const componentId = `product-component-${productId}-${buyNow ? "buy" : "cart"}-${variantIndex}`;
+  const componentId = `product-component-${productId}-${buyNow ? "buy" : "cart"}-v${variantIndex}`;
 
   useEffect(() => {
     if (!nodeRef.current) return;
+    nodeRef.current.innerHTML = "";
 
-    // Clear previous button instance
-    if (nodeRef.current) nodeRef.current.innerHTML = "";
+    let cancelled = false;
 
-    function init() {
-      const client = window.ShopifyBuy.buildClient({ domain: DOMAIN, storefrontAccessToken: TOKEN });
+    async function init() {
+      const variantNumericId = await fetchVariantId(productId, variantIndex);
+      if (cancelled) return;
 
-      // Fetch product to get variant IDs, then create component with selected variant
-      client.product.fetch(`gid://shopify/Product/${productId}`).then((product: any) => {
-        const variant = product?.variants?.[variantIndex] ?? product?.variants?.[0];
-        const variantId = variant?.id;
+      loadSDK(() => {
+        if (cancelled) return;
+        const node = document.getElementById(componentId);
+        if (!node) return;
 
+        const client = window.ShopifyBuy.buildClient({ domain: DOMAIN, storefrontAccessToken: TOKEN });
         window.ShopifyBuy.UI.onReady(client).then((ui: any) => {
-          const node = document.getElementById(componentId);
-          if (!node) return;
-          ui.createComponent("product", {
+          if (cancelled) return;
+          const options: any = {
             id: productId,
-            variantId: variantId,
             node,
             moneyFormat: "%C2%A5%7B%7Bamount_no_decimals%7D%7D",
             options: {
@@ -88,20 +135,17 @@ export default function ShopifyBuyButton({ productId, buyNow = false, variantInd
                 },
               },
             },
-          });
+          };
+          if (variantNumericId) {
+            options.variantId = variantNumericId;
+          }
+          ui.createComponent("product", options);
         });
       });
     }
 
-    if (window.ShopifyBuy?.UI) {
-      init();
-    } else {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
-      script.onload = init;
-      document.head.appendChild(script);
-    }
+    init();
+    return () => { cancelled = true; };
   }, [productId, variantIndex, componentId]);
 
   return (
