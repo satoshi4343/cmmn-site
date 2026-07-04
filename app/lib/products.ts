@@ -122,6 +122,7 @@ const CORE: Product[] = [
       { label: "Bridge",        value: "19 mm" },
       { label: "Temple Length", value: "140 mm" },
     ],
+    shopifyId: "9262952644841",
   },
   {
     id: "core-03",
@@ -139,6 +140,7 @@ const CORE: Product[] = [
     description: "Details coming soon.",
     detailRows: [],
     sizeRows: [],
+    shopifyId: "9262952382697",
   },
   {
     id: "core-04",
@@ -172,6 +174,7 @@ const CORE: Product[] = [
       { label: "Bridge",        value: "20 mm" },
       { label: "Temple Length", value: "123 mm" },
     ],
+    shopifyId: "9258033119465",
   },
 ];
 
@@ -208,6 +211,7 @@ const KOVA: Product[] = [
       { label: "Bridge",        value: "19 mm" },
       { label: "Temple Length", value: "120 mm" },
     ],
+    shopifyId: "9258038788329",
   },
   {
     id: "kova-02",
@@ -237,6 +241,7 @@ const KOVA: Product[] = [
       { label: "Bridge",        value: "19 mm" },
       { label: "Temple Length", value: "143 mm" },
     ],
+    shopifyId: "9260466766057",
   },
   {
     id: "kova-03",
@@ -267,6 +272,7 @@ const KOVA: Product[] = [
       { label: "Lens Width",  value: "66 mm" },
       { label: "Lens Height", value: "40 mm" },
     ],
+    shopifyId: "9258034561257",
   },
   {
     id: "kova-04",
@@ -295,6 +301,7 @@ const KOVA: Product[] = [
       { label: "Temple Length", value: "138 mm" },
       { label: "Weight",        value: "19 g" },
     ],
+    shopifyId: "9266077237481",
   },
 ];
 
@@ -329,6 +336,7 @@ const VOID: Product[] = [
       { label: "Lens Width",  value: "79 mm" },
       { label: "Lens Height", value: "59 mm" },
     ],
+    shopifyId: "9258033414377",
   },
   {
     id: "void-02",
@@ -357,6 +365,7 @@ const VOID: Product[] = [
       { label: "Lens Width",  value: "50 mm" },
       { label: "Lens Height", value: "32 mm" },
     ],
+    shopifyId: "9258033447145",
   },
   {
     id: "void-03",
@@ -391,6 +400,7 @@ const VOID: Product[] = [
       { label: "Bridge",        value: "21 mm" },
       { label: "Temple Length", value: "127 mm" },
     ],
+    shopifyId: "9258039410921",
   },
   {
     id: "void-04",
@@ -416,6 +426,7 @@ const VOID: Product[] = [
       { label: "Bridge",        value: "19 mm" },
       { label: "Temple Length", value: "140 mm" },
     ],
+    shopifyId: "9271285154025",
   },
 ];
 
