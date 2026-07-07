@@ -315,7 +315,7 @@ const VOID: Product[] = [
     number: "01",
     code: "VOID / 01",
     tagline: "Bold goggle-style sunglasses with a futuristic outdoor look.",
-    price: "¥4,980",
+    price: "¥5,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Silver Frame / Grey Lens",      image: "/products/void-01-c1.png" },
@@ -344,7 +344,7 @@ const VOID: Product[] = [
     number: "02",
     code: "VOID / 02",
     tagline: "Oval Y2K sunglasses designed for outdoor style and daily protection.",
-    price: "¥4,980",
+    price: "¥5,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Frame / Black-Grey Lens",  image: "/products/void-02-c1.jpg" },
@@ -373,7 +373,7 @@ const VOID: Product[] = [
     number: "03",
     code: "VOID / 03",
     tagline: "Oval Y2K sunglasses with a futuristic steampunk-inspired look.",
-    price: "¥4,980",
+    price: "¥5,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Frame / Grey Lens",        image: "/products/void-03-c1.jpg" },
@@ -408,7 +408,7 @@ const VOID: Product[] = [
     number: "04",
     code: "VOID / 04",
     tagline: "Y2K goggle-style sunglasses with a bold oval frame for sporty streetwear.",
-    price: "¥4,980",
+    price: "¥5,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Bright Black Frame / Black Lens",      image: "/products/void-04-c1.jpg" },
@@ -440,7 +440,7 @@ export const SERIES_META: Record<Series, { description: string; price: string }>
   ALL:  { description: "All CMMN. styles.",                                                          price: "" },
   CORE: { description: "The essential CMMN. collection. Sport-inspired silhouettes for daily wear.", price: "¥7,980" },
   KOVA: { description: "Performance geometry meets street culture. Built for motion.",               price: "¥4,980" },
-  VOID: { description: "Premium edition. Minimal hardware, maximum presence.",                       price: "from ¥5,980" },
+  VOID: { description: "Premium edition. Minimal hardware, maximum presence.",                       price: "¥5,980" },
 };
 
 export function getProduct(id: string): Product | undefined {
