@@ -268,11 +268,43 @@ function SpecRow({ label, value }: { label: string; value: string }) {
 // ─────────────────────────────────────────────────────────
 //  メインページ
 // ─────────────────────────────────────────────────────────
+const DOMAIN = "vusyw0-rc.myshopify.com";
+const TOKEN  = "0298a347930c22a5863c5bc21f51611d";
+
+async function fetchShopifyAvailability(shopifyId: string): Promise<boolean[]> {
+  try {
+    const res = await fetch(`https://${DOMAIN}/api/2024-01/graphql.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": TOKEN,
+      },
+      body: JSON.stringify({
+        query: `{
+          product(id: "gid://shopify/Product/${shopifyId}") {
+            variants(first: 20) {
+              edges { node { availableForSale } }
+            }
+          }
+        }`,
+      }),
+      cache: "no-store",
+    });
+    const json = await res.json();
+    const edges = json?.data?.product?.variants?.edges ?? [];
+    return edges.map((e: any) => !e.node.availableForSale);
+  } catch {
+    return [];
+  }
+}
+
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const product = getProduct(id);
   const [variantIdx, setVariantIdx] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  // Shopify在庫に基づくsoldOut状態（インデックス順）
+  const [shopifySoldOut, setShopifySoldOut] = useState<boolean[]>([]);
 
   const related = ALL_PRODUCTS
     .filter(p => p.series === product?.series && p.id !== product?.id)
@@ -281,6 +313,12 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   useEffect(() => {
     if (product) setVariantIdx(product.defaultVariantIndex);
   }, [product]);
+
+  useEffect(() => {
+    if (product?.shopifyId) {
+      fetchShopifyAvailability(product.shopifyId).then(setShopifySoldOut);
+    }
+  }, [product?.shopifyId]);
 
   if (!product) {
     return (
@@ -298,7 +336,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   }
 
   const variant = product.variants[variantIdx];
-  const isSoldOut = !!variant?.soldOut;
+  // Shopify在庫を優先、取得前はproducts.tsのフォールバック
+  const isSoldOut = shopifySoldOut.length > 0
+    ? !!shopifySoldOut[variantIdx]
+    : !!variant?.soldOut;
 
   return (
     <main style={{ backgroundColor: BG, minHeight: "100vh", color: "#fff", fontFamily: "inherit", overflowX: "hidden" }}>
@@ -494,19 +535,20 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               {product.variants.map((v, i) => {
                 const isActive = i === variantIdx;
+                const soldOut = shopifySoldOut.length > 0 ? !!shopifySoldOut[i] : !!v.soldOut;
                 return (
                   <button
                     key={v.label}
                     onClick={() => setVariantIdx(i)}
-                    title={v.soldOut ? `${v.name} — SOLD OUT` : v.name}
+                    title={soldOut ? `${v.name} — SOLD OUT` : v.name}
                     style={{
                       position: "relative",
                       padding: "0.48rem 0.9rem 0.44rem",
-                      border: `1px solid ${isActive ? "rgba(255,255,255,0.75)" : v.soldOut ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.16)"}`,
+                      border: `1px solid ${isActive ? "rgba(255,255,255,0.75)" : soldOut ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.16)"}`,
                       backgroundColor: isActive ? "rgba(255,255,255,0.08)" : "transparent",
                       color: isActive
-                        ? (v.soldOut ? "rgba(255,100,100,0.8)" : "#ffffff")
-                        : v.soldOut ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.42)",
+                        ? (soldOut ? "rgba(255,100,100,0.8)" : "#ffffff")
+                        : soldOut ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.42)",
                       fontSize: "0.46rem",
                       letterSpacing: "0.38em",
                       textTransform: "uppercase",
@@ -516,9 +558,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                       fontFamily: "inherit",
                       transition: "border-color 0.2s, color 0.2s, background-color 0.2s",
                       outline: "none",
-                      opacity: v.soldOut && !isActive ? 0.38 : 1,
+                      opacity: soldOut && !isActive ? 0.38 : 1,
                       boxShadow: isActive ? "inset 0 -1.5px 0 rgba(255,255,255,0.55)" : "none",
-                      textDecoration: v.soldOut && !isActive ? "line-through" : "none",
+                      textDecoration: soldOut && !isActive ? "line-through" : "none",
                     }}
                   >
                     {v.label}
@@ -613,7 +655,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           {/* アコーディオン: Colors */}
           <Accordion title="Colors">
             <div>
-              {product.variants.map((v, i) => (
+              {product.variants.map((v, i) => {
+                const soldOut = shopifySoldOut.length > 0 ? !!shopifySoldOut[i] : !!v.soldOut;
+                return (
                 <div key={v.label} style={{
                   display: "flex", alignItems: "center", gap: "1rem",
                   padding: "0.65rem 0",
@@ -628,13 +672,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                   <span style={{ color: i === variantIdx ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.38)", fontSize: "0.6rem", letterSpacing: "0.06em", fontWeight: 300, transition: "color 0.2s" }}>
                     {v.name}
                   </span>
-                  {v.soldOut && (
+                  {soldOut && (
                     <span style={{ marginLeft: "auto", color: "rgba(255,80,80,0.6)", fontSize: "0.4rem", letterSpacing: "0.28em", textTransform: "uppercase", flexShrink: 0 }}>
                       Sold Out
                     </span>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
           </Accordion>
           {/* アコーディオン群の末尾ボーダー */}
