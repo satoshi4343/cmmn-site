@@ -65,7 +65,7 @@ const CORE: Product[] = [
     number: "01",
     code: "CORE / 01",
     tagline: "Classic daily sunglasses with a clean, sharp silhouette.",
-    price: "¥7,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,    // C1 をデフォルト表示
     variants: [
       { label: "C1", name: "Black Frame / Black-Grey Lens",  image: "/products/core-01-c1.jpg" },
@@ -97,7 +97,7 @@ const CORE: Product[] = [
     number: "02",
     code: "CORE / 02",
     tagline: "Sleek wrap-style silhouette with lightweight performance fit.",
-    price: "¥7,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Jet Black Frame / Black Lens",          image: "/products/core-02-c1.jpg" },
@@ -130,7 +130,7 @@ const CORE: Product[] = [
     number: "03",
     code: "CORE / 03",
     tagline: "Coming soon.",
-    price: "¥7,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "—", image: "/products/core-03-c1.jpg" },
@@ -148,7 +148,7 @@ const CORE: Product[] = [
     number: "04",
     code: "CORE / 04",
     tagline: "Bold square sunglasses designed for sports, driving, and everyday outdoor style.",
-    price: "¥7,980",
+    price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Silver Frame / Clear Silver Lens", image: "/products/core-04-c1.jpg" },
@@ -188,7 +188,7 @@ const KOVA: Product[] = [
     number: "01",
     code: "KOVA / 01",
     tagline: "Slim rectangle sunglasses with a sharp outdoor-ready Y2K look.",
-    price: "¥4,980",
+    price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Frame / Grey Lens",   image: "/products/kova-01-c1.jpg", soldOut: true },
@@ -219,7 +219,7 @@ const KOVA: Product[] = [
     number: "02",
     code: "KOVA / 02",
     tagline: "Slim oval sunglasses with a clean vintage-inspired fashion look.",
-    price: "¥4,980",
+    price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Pale Pink Frame / Light Beige Lens", image: "/products/kova-02-c1.jpg" },
@@ -249,7 +249,7 @@ const KOVA: Product[] = [
     number: "03",
     code: "KOVA / 03",
     tagline: "Y2K retro wrap-around sunglasses built for streetwear, driving, and outdoor style.",
-    price: "¥4,980",
+    price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Tea Frame / Brown Lens",    image: "/products/kova-03-c1.jpg" },
@@ -280,7 +280,7 @@ const KOVA: Product[] = [
     number: "04",
     code: "KOVA / 04",
     tagline: "Cat eye sunglasses with a sweet, party-ready look.",
-    price: "¥4,980",
+    price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Leopard Frame / Brown Lens",    image: "/products/kova-04-c1.jpg" },
@@ -315,7 +315,7 @@ const VOID: Product[] = [
     number: "01",
     code: "VOID / 01",
     tagline: "Bold goggle-style sunglasses with a futuristic outdoor look.",
-    price: "¥5,980",
+    price: "¥3,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Silver Frame / Grey Lens",      image: "/products/void-01-c1.png" },
@@ -344,7 +344,7 @@ const VOID: Product[] = [
     number: "02",
     code: "VOID / 02",
     tagline: "Oval Y2K sunglasses designed for outdoor style and daily protection.",
-    price: "¥5,980",
+    price: "¥3,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Frame / Black-Grey Lens",  image: "/products/void-02-c1.jpg" },
@@ -373,7 +373,7 @@ const VOID: Product[] = [
     number: "03",
     code: "VOID / 03",
     tagline: "Oval Y2K sunglasses with a futuristic steampunk-inspired look.",
-    price: "¥5,980",
+    price: "¥3,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Black Frame / Grey Lens",        image: "/products/void-03-c1.jpg" },
@@ -408,7 +408,7 @@ const VOID: Product[] = [
     number: "04",
     code: "VOID / 04",
     tagline: "Y2K goggle-style sunglasses with a bold oval frame for sporty streetwear.",
-    price: "¥5,980",
+    price: "¥3,980",
     defaultVariantIndex: 0,
     variants: [
       { label: "C1", name: "Bright Black Frame / Black Lens",      image: "/products/void-04-c1.jpg" },
@@ -438,9 +438,9 @@ export const SERIES_LIST: Series[] = ["ALL", "CORE", "VOID", "KOVA"];
 
 export const SERIES_META: Record<Series, { description: string; price: string }> = {
   ALL:  { description: "All CMMN. styles.",                                                          price: "" },
-  CORE: { description: "The essential CMMN. collection. Sport-inspired silhouettes for daily wear.", price: "¥7,980" },
-  KOVA: { description: "Performance geometry meets street culture. Built for motion.",               price: "¥4,980" },
-  VOID: { description: "Premium edition. Minimal hardware, maximum presence.",                       price: "¥5,980" },
+  CORE: { description: "The essential CMMN. collection. Sport-inspired silhouettes for daily wear.", price: "¥4,980" },
+  KOVA: { description: "Performance geometry meets street culture. Built for motion.",               price: "¥2,980" },
+  VOID: { description: "Premium edition. Minimal hardware, maximum presence.",                       price: "¥3,980" },
 };
 
 export function getProduct(id: string): Product | undefined {
