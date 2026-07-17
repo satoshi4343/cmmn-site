@@ -228,21 +228,10 @@ export default function ShowroomSection() {
             marginTop: "clamp(3.5rem,7vw,6rem)",
             paddingTop: "clamp(1.5rem,3vw,2.5rem)",
             borderTop: "1px solid rgba(0,0,0,0.08)",
-            display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem",
           }}>
             <span style={{ color: "rgba(0,0,0,0.25)", fontSize: "0.5rem", letterSpacing: "0.4em", textTransform: "uppercase", fontWeight: 300 }}>
               12 styles · 3 series
             </span>
-            <Link
-              href="/store"
-              style={{ textDecoration: "none", opacity: 0.45, transition: "opacity 0.4s" }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = "1")}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = "0.45")}
-            >
-              <span style={{ color: "#111", fontSize: "0.52rem", letterSpacing: "0.52em", textTransform: "uppercase", fontWeight: 600 }}>
-                Enter 3D Store →
-              </span>
-            </Link>
           </div>
         </div>
       </Reveal>
