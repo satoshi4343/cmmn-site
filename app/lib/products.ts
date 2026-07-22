@@ -5,7 +5,7 @@
 //        image: null → "Photo coming soon" プレースホルダー
 // ─────────────────────────────────────────────────────────
 
-export type Series = "ALL" | "CORE" | "KOVA" | "VOID" | "AXON";
+export type Series = "ALL" | "CORE" | "KOVA" | "VOID";
 
 export interface SpecRow {
   label: string;
@@ -431,54 +431,16 @@ const VOID: Product[] = [
 ];
 
 // ─────────────────────────────────────────────────────────
-//  AXON SERIES
-// ─────────────────────────────────────────────────────────
-const AXON: Product[] = [
-  {
-    id: "axon-01",
-    series: "AXON",
-    number: "01",
-    code: "AXON / 01",
-    tagline: "Compact rectangular sunglasses with a soft gradient lens.",
-    price: "¥2,980",
-    defaultVariantIndex: 0,
-    variants: [
-      { label: "C1", name: "Black Frame / Black Lens",                  image: "/products/axon-01-c1.jpg" },
-      { label: "C2", name: "Tortoise Frame / Brown Gradient Lens",      image: "/products/axon-01-c2.jpg" },
-      { label: "C3", name: "Clear Pink Frame / Pink Gradient Lens",     image: "/products/axon-01-c3.jpg" },
-    ],
-    description: "Compact rectangular sunglasses with a soft gradient lens.",
-    detailRows: [
-      { label: "Frame",   value: "Polycarbonate (PC)" },
-      { label: "Lens",    value: "Polycarbonate (PC) / UV400 protection" },
-      { label: "Finish",  value: "Gradient tint" },
-      { label: "Style",   value: "Rectangular fashion sunglasses" },
-      { label: "Fit",     value: "Adult / Unisex" },
-      { label: "Package", value: "1 pair of sunglasses" },
-    ],
-    sizeRows: [
-      { label: "Total Width",   value: "144 mm" },
-      { label: "Lens Width",    value: "65 mm" },
-      { label: "Lens Height",   value: "39 mm" },
-      { label: "Bridge",        value: "15 mm" },
-      { label: "Temple Length", value: "135 mm" },
-    ],
-    shopifyId: "", // Shopify管理画面で商品作成後にIDを入力してください
-  },
-];
-
-// ─────────────────────────────────────────────────────────
 //  エクスポート
 // ─────────────────────────────────────────────────────────
-export const ALL_PRODUCTS: Product[] = [...CORE, ...VOID, ...KOVA, ...AXON];
-export const SERIES_LIST: Series[] = ["ALL", "CORE", "VOID", "KOVA", "AXON"];
+export const ALL_PRODUCTS: Product[] = [...CORE, ...VOID, ...KOVA];
+export const SERIES_LIST: Series[] = ["ALL", "CORE", "VOID", "KOVA"];
 
 export const SERIES_META: Record<Series, { description: string; price: string }> = {
-  ALL:  { description: "All CMMN. styles.",                                                                          price: "" },
-  CORE: { description: "The essential CMMN. collection. Sport-inspired silhouettes for daily wear.",                 price: "¥4,980" },
-  KOVA: { description: "Performance geometry meets street culture. Built for motion.",                               price: "¥2,980" },
-  VOID: { description: "Premium edition. Minimal hardware, maximum presence.",                                       price: "¥3,980" },
-  AXON: { description: "Compact rectangular frames with gradient UV400 lenses. Sharp silhouette, everyday wear.",    price: "¥2,980" },
+  ALL:  { description: "All CMMN. styles.",                                                          price: "" },
+  CORE: { description: "The essential CMMN. collection. Sport-inspired silhouettes for daily wear.", price: "¥4,980" },
+  KOVA: { description: "Performance geometry meets street culture. Built for motion.",               price: "¥2,980" },
+  VOID: { description: "Premium edition. Minimal hardware, maximum presence.",                       price: "¥3,980" },
 };
 
 export function getProduct(id: string): Product | undefined {
