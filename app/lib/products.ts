@@ -68,11 +68,11 @@ const AXON: Product[] = [
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
-      { label: "C1", name: "Black",        image: "/products/axon-01-c1.jpg" },
-      { label: "C2", name: "Leopard Brown",image: "/products/axon-01-c2.jpg" },
-      { label: "C3", name: "Clear Blue",   image: "/products/axon-01-c3.jpg" },
-      { label: "C4", name: "Leopard Black",image: "/products/axon-01-c4.jpg" },
-      { label: "C5", name: "Clear Pink",   image: "/products/axon-01-c5.jpg" },
+      { label: "C1", name: "Black",         image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/d4d2a05a-d24e-4f48-957b-1a83b5695237.png" },
+      { label: "C2", name: "Leopard Brown", image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/AXON01_tortoise_white_background.png" },
+      { label: "C3", name: "Clear Blue",    image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/AXON01_Blue_square_unchanged.png" },
+      { label: "C4", name: "Leopard Black", image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/AXON01_tortoise_darklens_white_background.png" },
+      { label: "C5", name: "Clear Pink",    image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/AXON01_Pink_square_unchanged.png" },
     ],
     description: "A narrow rectangular frame with a low-profile silhouette, designed for a sharp everyday look.",
     detailRows: [
@@ -86,7 +86,7 @@ const AXON: Product[] = [
       { label: "Lens Width",  value: "65 mm" },
       { label: "Lens Height", value: "39 mm" },
     ],
-    // shopifyId: "",  // Shopify Product ID 未確認 — 確定後にここへ追加
+    shopifyId: "9347880452329",
   },
 ];
 
