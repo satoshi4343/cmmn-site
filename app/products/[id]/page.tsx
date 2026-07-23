@@ -4,6 +4,8 @@ import { use, useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { getProduct, ALL_PRODUCTS, type Product } from "../../lib/products";
 import ShopifyBuyButton from "../../components/ShopifyBuyButton";
+import { useCurrency } from "../../context/CurrencyContext";
+import { fetchProductPrices, formatPrice, type ShopifyPrice } from "../../lib/shopify";
 
 const BG = "#060b14";
 
@@ -305,6 +307,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const [modalOpen, setModalOpen] = useState(false);
   // Shopify在庫に基づくsoldOut状態（インデックス順）
   const [shopifySoldOut, setShopifySoldOut] = useState<boolean[]>([]);
+  const { currency, country } = useCurrency();
+  const [shopifyPrice, setShopifyPrice] = useState<ShopifyPrice | null>(null);
 
   const related = ALL_PRODUCTS
     .filter(p => p.series === product?.series && p.id !== product?.id)
@@ -319,6 +323,16 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       fetchShopifyAvailability(product.shopifyId).then(setShopifySoldOut);
     }
   }, [product?.shopifyId]);
+
+  useEffect(() => {
+    if (!product?.shopifyId || currency !== "USD") {
+      setShopifyPrice(null);
+      return;
+    }
+    fetchProductPrices([product.shopifyId], country).then(prices => {
+      setShopifyPrice(prices[product.shopifyId!] ?? null);
+    });
+  }, [currency, country, product?.shopifyId]);
 
   if (!product) {
     return (
@@ -514,8 +528,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
           {/* 価格 */}
           <p style={{ color: "rgba(255,255,255,0.88)", fontSize: "1.4rem", letterSpacing: "0.04em", fontWeight: 400, margin: "0 0 2rem" }}>
-            {product.price}
-            <span style={{ fontSize: "0.46rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.3em", marginLeft: "0.7rem" }}>TAX INCL.</span>
+            {currency === "USD" && shopifyPrice ? formatPrice(shopifyPrice) : product.price}
+            <span style={{ fontSize: "0.46rem", color: "rgba(255,255,255,0.28)", letterSpacing: "0.3em", marginLeft: "0.7rem" }}>
+              {currency === "USD" ? "USD" : "TAX INCL."}
+            </span>
           </p>
 
           {/* 区切り */}

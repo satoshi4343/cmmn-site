@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useCurrency, type Currency } from "../context/CurrencyContext";
 
 const linkStyle: React.CSSProperties = {
   color: "rgba(255,255,255,0.62)",
@@ -14,6 +15,44 @@ const linkStyle: React.CSSProperties = {
   cursor: "pointer",
   whiteSpace: "nowrap",
 };
+
+function CurrencyToggle({ style }: { style?: React.CSSProperties }) {
+  const { currency, setCurrency } = useCurrency();
+  const toggle = () => setCurrency(currency === "JPY" ? "USD" : "JPY");
+  return (
+    <button
+      onClick={toggle}
+      style={{
+        background: "none",
+        border: "1px solid rgba(255,255,255,0.25)",
+        borderRadius: "2px",
+        cursor: "pointer",
+        padding: "0.18rem 0.55rem",
+        display: "flex",
+        alignItems: "center",
+        gap: "0.3rem",
+        fontFamily: "inherit",
+        ...style,
+      }}
+    >
+      {(["JPY", "USD"] as Currency[]).map((c, i) => (
+        <span
+          key={c}
+          style={{
+            color: currency === c ? "#ffffff" : "rgba(255,255,255,0.3)",
+            fontSize: "0.46rem",
+            letterSpacing: "0.3em",
+            fontWeight: currency === c ? 600 : 300,
+            transition: "color 0.2s",
+          }}
+        >
+          {i === 1 && <span style={{ color: "rgba(255,255,255,0.18)", marginRight: "0.3rem" }}>|</span>}
+          {c}
+        </span>
+      ))}
+    </button>
+  );
+}
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -119,7 +158,7 @@ export default function Navbar() {
         </Link>
 
         {/* 右 — デスクトップ */}
-        <div className="nav-links" style={{ gap: "clamp(1.5rem, 3vw, 3rem)" }}>
+        <div className="nav-links" style={{ gap: "clamp(1.5rem, 3vw, 3rem)", alignItems: "center" }}>
           {[["ABOUT US", "/about"], ["CONTACT", "/contact"]].map(([label, href]) => (
             <Link
               key={label}
@@ -131,6 +170,7 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <CurrencyToggle />
         </div>
 
         {/* 右 — モバイル スペーサー（CMMN.を中央に保つ） */}
@@ -155,7 +195,7 @@ export default function Navbar() {
             ["COLLECTIONS", "/collections", false],
             ["ABOUT US", "/about", false],
             ["CONTACT", "/contact", false],
-          ].map(([label, href, isScroll], i) => (
+          ].map(([label, href, isScroll], i, arr) => (
             <a
               key={label as string}
               href={href as string}
@@ -182,7 +222,7 @@ export default function Navbar() {
                 textTransform: "uppercase",
                 textDecoration: "none",
                 padding: "1rem 0",
-                borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.07)" : "none",
+                borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
                 display: "block",
                 transition: "color 0.15s ease",
               }}
@@ -192,6 +232,9 @@ export default function Navbar() {
               {label}
             </a>
           ))}
+          <div style={{ marginTop: "2rem" }}>
+            <CurrencyToggle style={{ borderColor: "rgba(255,255,255,0.15)" }} />
+          </div>
         </div>
       )}
     </>

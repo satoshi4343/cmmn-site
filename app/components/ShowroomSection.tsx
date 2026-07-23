@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { SERIES_LIST, SERIES_META, getSeriesProducts, type Series, type Product } from "../lib/products";
+import { SERIES_LIST, SERIES_META, getSeriesProducts, ALL_PRODUCTS, type Series, type Product } from "../lib/products";
+import { useCurrency } from "../context/CurrencyContext";
+import { fetchProductPrices, formatPrice, type ShopifyPrice } from "../lib/shopify";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +26,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 // ─── 商品カード ────────────────────────────────────────────
-function ProductCard({ product, index }: { product: Product; index: number }) {
+function ProductCard({ product, index, displayPrice }: { product: Product; index: number; displayPrice: string }) {
   const [hovered, setHovered] = useState(false);
   const [variantIdx, setVariantIdx] = useState(product.defaultVariantIndex);
   const [imgError, setImgError] = useState(false);
@@ -118,7 +120,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           </p>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <span style={{ color: "rgba(0,0,0,0.5)", fontSize: "0.68rem", letterSpacing: "0.07em", fontWeight: 300 }}>
-              {product.price}
+              {displayPrice}
             </span>
             <span style={{
               color: hovered ? "rgba(0,0,0,0.5)" : "transparent",
@@ -165,9 +167,18 @@ function SeriesTabs({ active, onChange }: { active: Series; onChange: (s: Series
 export default function ShowroomSection() {
   const [activeSeries, setActiveSeries] = useState<Series>("ALL");
   const [fading, setFading] = useState(false);
+  const { currency, country } = useCurrency();
+  const [usdPrices, setUsdPrices] = useState<Record<string, ShopifyPrice | null>>({});
 
   const products = getSeriesProducts(activeSeries);
   const meta = SERIES_META[activeSeries];
+
+  // USD に切り替わったとき全商品の価格を一括取得
+  useEffect(() => {
+    if (currency !== "USD") return;
+    const ids = ALL_PRODUCTS.filter(p => p.shopifyId).map(p => p.shopifyId!);
+    fetchProductPrices(ids, country).then(setUsdPrices);
+  }, [currency, country]);
 
   const handleTabChange = (s: Series) => {
     if (s === activeSeries || fading) return;
@@ -219,9 +230,14 @@ export default function ShowroomSection() {
             opacity: fading ? 0 : 1,
             transition: "opacity 0.18s ease",
           }}>
-            {products.map((p, i) => (
-              <ProductCard key={p.id} product={p} index={i} />
-            ))}
+            {products.map((p, i) => {
+              let displayPrice = p.price;
+              if (currency === "USD" && p.shopifyId) {
+                const sp = usdPrices[p.shopifyId];
+                if (sp) displayPrice = formatPrice(sp);
+              }
+              return <ProductCard key={p.id} product={p} index={i} displayPrice={displayPrice} />;
+            })}
           </div>
 
           <div style={{
