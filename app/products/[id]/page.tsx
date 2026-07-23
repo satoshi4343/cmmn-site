@@ -300,6 +300,33 @@ async function fetchShopifyAvailability(shopifyId: string): Promise<boolean[]> {
   }
 }
 
+// shopifyVariantId が設定されているバリアントを直接IDで照合して可用性を取得する
+// 複数オプション商品（例：Frame Color × Eye Prescription）でインデックスがずれる場合に使用
+async function fetchVariantAvailabilityByIds(variantIds: string[]): Promise<boolean[]> {
+  try {
+    const aliases = variantIds
+      .map((id, i) => `v${i}: node(id: "gid://shopify/ProductVariant/${id}") { ... on ProductVariant { availableForSale } }`)
+      .join("\n");
+    const res = await fetch(`https://${DOMAIN}/api/2024-01/graphql.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": TOKEN,
+      },
+      body: JSON.stringify({ query: `{ ${aliases} }` }),
+      cache: "no-store",
+    });
+    const json = await res.json();
+    const data = json?.data ?? {};
+    return variantIds.map((_, i) => {
+      const node = data[`v${i}`];
+      return node ? !node.availableForSale : false;
+    });
+  } catch {
+    return [];
+  }
+}
+
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const product = getProduct(id);
@@ -319,7 +346,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   }, [product]);
 
   useEffect(() => {
-    if (product?.shopifyId) {
+    if (!product?.shopifyId) return;
+    const directIds = product.variants
+      .map(v => v.shopifyVariantId)
+      .filter((id): id is string => !!id);
+    if (directIds.length === product.variants.length) {
+      // 全バリアントに直接IDが設定されている場合はIDで正確に照合する
+      fetchVariantAvailabilityByIds(directIds).then(setShopifySoldOut);
+    } else {
       fetchShopifyAvailability(product.shopifyId).then(setShopifySoldOut);
     }
   }, [product?.shopifyId]);
@@ -610,8 +644,8 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 {/* Buy Now / Add to Cart — ShopifySDK（shopifyIdがある商品）またはフォールバック */}
                 {product.shopifyId ? (
                   <>
-                    <ShopifyBuyButton productId={product.shopifyId} buyNow variantIndex={variantIdx} />
-                    <ShopifyBuyButton productId={product.shopifyId} variantIndex={variantIdx} />
+                    <ShopifyBuyButton productId={product.shopifyId} buyNow variantIndex={variantIdx} directVariantId={variant.shopifyVariantId} />
+                    <ShopifyBuyButton productId={product.shopifyId} variantIndex={variantIdx} directVariantId={variant.shopifyVariantId} />
                   </>
                 ) : (
                   <a

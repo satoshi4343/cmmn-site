@@ -6,6 +6,8 @@ interface Props {
   productId: string;
   buyNow?: boolean;
   variantIndex?: number;
+  // 複数オプション商品用: 設定時は variantIndex による検索をスキップし、このIDを直接使用する
+  directVariantId?: string;
 }
 
 const DOMAIN = "vusyw0-rc.myshopify.com";
@@ -64,9 +66,9 @@ function loadSDK(callback: () => void) {
   document.head.appendChild(script);
 }
 
-export default function ShopifyBuyButton({ productId, buyNow = false, variantIndex = 0 }: Props) {
+export default function ShopifyBuyButton({ productId, buyNow = false, variantIndex = 0, directVariantId }: Props) {
   const nodeRef = useRef<HTMLDivElement>(null);
-  const componentId = `product-component-${productId}-${buyNow ? "buy" : "cart"}-v${variantIndex}`;
+  const componentId = `product-component-${productId}-${buyNow ? "buy" : "cart"}-v${directVariantId ?? variantIndex}`;
 
   useEffect(() => {
     if (!nodeRef.current) return;
@@ -75,7 +77,8 @@ export default function ShopifyBuyButton({ productId, buyNow = false, variantInd
     let cancelled = false;
 
     async function init() {
-      const variantNumericId = await fetchVariantId(productId, variantIndex);
+      // directVariantId が指定されている場合は API 呼び出しをスキップして直接使用
+      const variantNumericId = directVariantId ?? await fetchVariantId(productId, variantIndex);
       if (cancelled) return;
 
       loadSDK(() => {
@@ -146,7 +149,7 @@ export default function ShopifyBuyButton({ productId, buyNow = false, variantInd
 
     init();
     return () => { cancelled = true; };
-  }, [productId, variantIndex, componentId]);
+  }, [productId, variantIndex, directVariantId, componentId]);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

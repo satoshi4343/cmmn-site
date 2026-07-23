@@ -17,6 +17,9 @@ export interface ColorVariant {
   name: string;        // "Black Frame / Black-Grey Lens"
   image: string | null;
   soldOut?: boolean;   // true = 在庫なし（表示はするが購入不可）
+  // 複数オプション商品（例：Frame Color × Eye Prescription）で使用
+  // 設定時は variantIndex による位置探索を行わず、このIDを直接使用する
+  shopifyVariantId?: string;
 }
 
 export interface Product {
@@ -87,6 +90,45 @@ const AXON: Product[] = [
       { label: "Lens Height", value: "39 mm" },
     ],
     shopifyId: "9347880452329",
+  },
+  {
+    id: "axon-03",
+    series: "AXON",
+    number: "03",
+    code: "AXON / 03",
+    tagline: "A rimless rectangular frame with a refined metal construction and decorative temple detailing.",
+    price: "¥2,980",
+    defaultVariantIndex: 0,
+    variants: [
+      {
+        label: "C1",
+        name: "Gold / Black",
+        image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/0b4b1d58-5e9d-4559-9f5c-109973dbe8dd.png",
+        shopifyVariantId: "51526891864297",
+      },
+      {
+        label: "C2",
+        name: "Silver / Black",
+        image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/AXON03_Silver_1200x1200_cb612e80-5df4-463e-b3bb-74690a1de469.jpg",
+        shopifyVariantId: "51526892060905",
+      },
+    ],
+    description: "A rimless rectangular frame with a refined metal construction and decorative temple detailing.",
+    detailRows: [
+      { label: "Frame",         value: "Copper" },
+      { label: "Lens Material", value: "Plastic" },
+      { label: "Structure",     value: "Rimless" },
+      { label: "Style",         value: "Rectangle" },
+      { label: "Lens Color",    value: "Clear" },
+    ],
+    sizeRows: [
+      { label: "Total Width",   value: "150 mm" },
+      { label: "Lens Width",    value: "53 mm" },
+      { label: "Lens Height",   value: "34 mm" },
+      { label: "Bridge",        value: "18 mm" },
+      { label: "Temple Length", value: "148 mm" },
+    ],
+    shopifyId: "9346524479721",
   },
   {
     id: "axon-02",
