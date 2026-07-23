@@ -246,7 +246,7 @@ export default function ShowroomSection() {
             borderTop: "1px solid rgba(0,0,0,0.08)",
           }}>
             <span style={{ color: "rgba(0,0,0,0.25)", fontSize: "0.5rem", letterSpacing: "0.4em", textTransform: "uppercase", fontWeight: 300 }}>
-              12 styles · 3 series
+              13 styles · 4 series
             </span>
           </div>
         </div>

@@ -5,7 +5,7 @@
 //        image: null → "Photo coming soon" プレースホルダー
 // ─────────────────────────────────────────────────────────
 
-export type Series = "ALL" | "CORE" | "KOVA" | "VOID";
+export type Series = "ALL" | "AXON" | "CORE" | "KOVA" | "VOID";
 
 export interface SpecRow {
   label: string;
@@ -54,6 +54,41 @@ function tbd(id: string, series: Series, number: string, tagline: string, price:
     sizeRows: [],
   };
 }
+
+// ─────────────────────────────────────────────────────────
+//  AXON SERIES
+// ─────────────────────────────────────────────────────────
+const AXON: Product[] = [
+  {
+    id: "axon-01",
+    series: "AXON",
+    number: "01",
+    code: "AXON / 01",
+    tagline: "A narrow rectangular frame with a low-profile silhouette, designed for a sharp everyday look.",
+    price: "¥2,980",
+    defaultVariantIndex: 0,
+    variants: [
+      { label: "C1", name: "Black",        image: "/products/axon-01-c1.jpg" },
+      { label: "C2", name: "Leopard Brown",image: "/products/axon-01-c2.jpg" },
+      { label: "C3", name: "Clear Blue",   image: "/products/axon-01-c3.jpg" },
+      { label: "C4", name: "Leopard Black",image: "/products/axon-01-c4.jpg" },
+      { label: "C5", name: "Clear Pink",   image: "/products/axon-01-c5.jpg" },
+    ],
+    description: "A narrow rectangular frame with a low-profile silhouette, designed for a sharp everyday look.",
+    detailRows: [
+      { label: "Frame",         value: "Plastic" },
+      { label: "Lens Material", value: "Polycarbonate" },
+      { label: "Lens",          value: "Gradient / UV400" },
+      { label: "Style",         value: "Rectangle" },
+      { label: "Fit",           value: "Unisex" },
+    ],
+    sizeRows: [
+      { label: "Lens Width",  value: "65 mm" },
+      { label: "Lens Height", value: "39 mm" },
+    ],
+    // shopifyId: "",  // Shopify Product ID 未確認 — 確定後にここへ追加
+  },
+];
 
 // ─────────────────────────────────────────────────────────
 //  CORE SERIES
@@ -433,11 +468,12 @@ const VOID: Product[] = [
 // ─────────────────────────────────────────────────────────
 //  エクスポート
 // ─────────────────────────────────────────────────────────
-export const ALL_PRODUCTS: Product[] = [...CORE, ...VOID, ...KOVA];
-export const SERIES_LIST: Series[] = ["ALL", "CORE", "VOID", "KOVA"];
+export const ALL_PRODUCTS: Product[] = [...AXON, ...CORE, ...VOID, ...KOVA];
+export const SERIES_LIST: Series[] = ["ALL", "AXON", "CORE", "VOID", "KOVA"];
 
 export const SERIES_META: Record<Series, { description: string; price: string }> = {
   ALL:  { description: "All CMMN. styles.",                                                          price: "" },
+  AXON: { description: "",                                                                            price: "¥2,980" },
   CORE: { description: "The essential CMMN. collection. Sport-inspired silhouettes for daily wear.", price: "¥4,980" },
   KOVA: { description: "Performance geometry meets street culture. Built for motion.",               price: "¥2,980" },
   VOID: { description: "Premium edition. Minimal hardware, maximum presence.",                       price: "¥3,980" },
