@@ -57,3 +57,32 @@ html {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+/* セール告知バナー マーキー */
+@keyframes cmmn-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.cmmn-banner-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  contain: layout;
+  animation: cmmn-marquee 22s linear infinite;
+}
+
+.cmmn-banner-dup {
+  display: inline;
+}
+
+@media (min-width: 700px) {
+  .cmmn-banner-track {
+    animation: none !important;
+    width: 100% !important;
+    justify-content: center;
+  }
+  .cmmn-banner-dup {
+    display: none;
+  }
+}

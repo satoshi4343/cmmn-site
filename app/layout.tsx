@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import SaleBanner from "./components/SaleBanner";
 import { CurrencyProvider, type Country } from "./context/CurrencyContext";
 
 const geistSans = Geist({
@@ -34,8 +35,9 @@ export default async function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" style={{ overflowX: "hidden", maxWidth: "100vw" }}>
         <CurrencyProvider initialCountry={initialCountry}>
+          <SaleBanner />
           <Navbar />
           {children}
         </CurrencyProvider>
