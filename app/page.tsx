@@ -138,7 +138,7 @@ export default function Home() {
           I.  HERO
           写真がブランドになる瞬間
       ════════════════════════════════════════ */}
-      <div className="relative h-screen overflow-hidden" style={{ paddingTop: "28px" }}>
+      <div className="relative h-screen overflow-hidden">
         <HeroScene />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-6">
           {/* CMMN. ロゴ — 変更禁止 */}
