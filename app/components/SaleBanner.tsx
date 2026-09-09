@@ -1,7 +1,7 @@
 "use client";
 
 const BANNER_H = 28;
-const TEXT = "SUMMER SALE — UP TO 30% OFF / FREE SHIPPING OVER ¥5,000";
+const TEXT = "CMMN. MULTI-BUY — 2 ITEMS ¥500 OFF / 3 ITEMS ¥2,000 OFF / 4+ ITEMS ¥2,980 OFF / FREE SHIPPING ¥5,000+";
 
 export default function SaleBanner() {
   const textStyle: React.CSSProperties = {
