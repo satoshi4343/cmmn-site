@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useCurrency, type Currency } from "../context/CurrencyContext";
+import { useLanguage } from "../context/LanguageContext";
 
 const linkStyle: React.CSSProperties = {
   color: "rgba(255,255,255,0.62)",
@@ -16,9 +17,9 @@ const linkStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
-function CurrencyToggle({ style }: { style?: React.CSSProperties }) {
-  const { currency, setCurrency } = useCurrency();
-  const toggle = () => setCurrency(currency === "JPY" ? "USD" : "JPY");
+function LanguageToggle({ style }: { style?: React.CSSProperties }) {
+  const { language, setLanguage } = useLanguage();
+  const toggle = () => setLanguage(language === "ja" ? "en" : "ja");
   return (
     <button
       onClick={toggle}
@@ -35,19 +36,19 @@ function CurrencyToggle({ style }: { style?: React.CSSProperties }) {
         ...style,
       }}
     >
-      {(["JPY", "USD"] as Currency[]).map((c, i) => (
+      {(["JA", "EN"] as const).map((l, i) => (
         <span
-          key={c}
+          key={l}
           style={{
-            color: currency === c ? "#ffffff" : "rgba(255,255,255,0.3)",
+            color: (language === "ja" && l === "JA") || (language === "en" && l === "EN") ? "#ffffff" : "rgba(255,255,255,0.3)",
             fontSize: "0.46rem",
             letterSpacing: "0.3em",
-            fontWeight: currency === c ? 600 : 300,
+            fontWeight: (language === "ja" && l === "JA") || (language === "en" && l === "EN") ? 600 : 300,
             transition: "color 0.2s",
           }}
         >
           {i === 1 && <span style={{ color: "rgba(255,255,255,0.18)", marginRight: "0.3rem" }}>|</span>}
-          {c}
+          {l}
         </span>
       ))}
     </button>
@@ -171,6 +172,7 @@ export default function Navbar() {
             </Link>
           ))}
           <CurrencyToggle />
+          <LanguageToggle />
         </div>
 
         {/* 右 — モバイル スペーサー（CMMN.を中央に保つ） */}
