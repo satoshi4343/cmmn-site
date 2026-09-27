@@ -71,6 +71,7 @@ function LanguageToggle({ style }: { style?: React.CSSProperties }) {
         alignItems: "center",
         gap: "0.3rem",
         fontFamily: "inherit",
+        color: "#ffffff",
         ...style,
       }}
     >
@@ -117,9 +118,10 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 clamp(1.5rem, 5vw, 4rem)",
+          padding: "0 clamp(1rem, 3vw, 2.5rem)",
           height: "clamp(3rem, 5vw, 4rem)",
           background: "linear-gradient(to bottom, rgba(6,11,20,0.55) 0%, transparent 100%)",
+          overflow: "hidden",
         }}
       >
         {/* 左 — デスクトップ */}
@@ -197,7 +199,7 @@ export default function Navbar() {
         </Link>
 
         {/* 右 — デスクトップ */}
-        <div className="nav-links" style={{ gap: "clamp(1.5rem, 3vw, 3rem)", alignItems: "center" }}>
+        <div className="nav-links" style={{ gap: "clamp(0.8rem, 2vw, 1.8rem)", alignItems: "center" }}>
           {[["ABOUT US", "/about"], ["CONTACT", "/contact"]].map(([label, href]) => (
             <Link
               key={label}
