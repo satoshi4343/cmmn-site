@@ -28,11 +28,13 @@ function CurrencyToggle({ style }: { style?: React.CSSProperties }) {
         border: "1px solid rgba(255,255,255,0.25)",
         borderRadius: "2px",
         cursor: "pointer",
-        padding: "0.18rem 0.55rem",
+        padding: "0.12rem 0.4rem",
         display: "flex",
         alignItems: "center",
-        gap: "0.3rem",
+        gap: "0.2rem",
         fontFamily: "inherit",
+        fontSize: "0.42rem",
+        whiteSpace: "nowrap",
         ...style,
       }}
     >
@@ -66,12 +68,14 @@ function LanguageToggle({ style }: { style?: React.CSSProperties }) {
         border: "1px solid rgba(255,255,255,0.25)",
         borderRadius: "2px",
         cursor: "pointer",
-        padding: "0.18rem 0.55rem",
+        padding: "0.12rem 0.4rem",
         display: "flex",
         alignItems: "center",
-        gap: "0.3rem",
+        gap: "0.2rem",
         fontFamily: "inherit",
         color: "#ffffff",
+        fontSize: "0.42rem",
+        whiteSpace: "nowrap",
         ...style,
       }}
     >
@@ -118,10 +122,10 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 clamp(1rem, 3vw, 2.5rem)",
+          padding: "0 clamp(1rem, 2.5vw, 2rem)",
           height: "clamp(3rem, 5vw, 4rem)",
           background: "linear-gradient(to bottom, rgba(6,11,20,0.55) 0%, transparent 100%)",
-          overflow: "hidden",
+          overflow: "visible",
         }}
       >
         {/* 左 — デスクトップ */}
@@ -199,7 +203,7 @@ export default function Navbar() {
         </Link>
 
         {/* 右 — デスクトップ */}
-        <div className="nav-links" style={{ gap: "clamp(0.8rem, 2vw, 1.8rem)", alignItems: "center" }}>
+        <div className="nav-links" style={{ gap: "clamp(0.5rem, 1.5vw, 1.2rem)", alignItems: "center" }}>
           {[["ABOUT US", "/about"], ["CONTACT", "/contact"]].map(([label, href]) => (
             <Link
               key={label}
