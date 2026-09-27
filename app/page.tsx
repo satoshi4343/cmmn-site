@@ -221,7 +221,7 @@ export default function Home() {
           </p>
         </Reveal>
 
-        {/* ── おすすめ商品 ── */}
+        {/* ── 新商品紹介動画 ── */}
         <Reveal delay={400}>
           <div style={{ marginTop: "clamp(5rem, 10vw, 8rem)" }}>
             {/* ラベル */}
@@ -236,70 +236,56 @@ export default function Home() {
               Our Pick
             </p>
 
-            <Link href="/products/kova-03" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "clamp(2rem, 6vw, 5rem)" }}>
-              {/* 商品画像 */}
+            {/* 動画セクション */}
+            <Link href="/products/axon-01" style={{ textDecoration: "none", display: "block" }}>
               <div style={{
-                flexShrink: 0,
-                width: "clamp(10rem, 28vw, 20rem)",
-                aspectRatio: "1 / 1",
+                position: "relative",
+                width: "100%",
+                aspectRatio: "16 / 9",
                 backgroundColor: "#0d1120",
                 overflow: "hidden",
-                position: "relative",
+                borderRadius: "2px",
               }}>
-                <div aria-hidden="true" style={{
-                  position: "absolute", inset: 0,
-                  background: "radial-gradient(ellipse 70% 60% at 50% 30%, rgba(80,105,160,0.12) 0%, transparent 70%)",
-                  pointerEvents: "none",
-                }} />
-                <img
-                  src="/products/kova-03-c1.jpg"
-                  alt="KOVA / 03"
+                <video
+                  src="/products/812165852.158705.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   style={{
-                    width: "100%", height: "100%",
+                    width: "100%",
+                    height: "100%",
                     objectFit: "cover",
                     display: "block",
-                    transition: "transform 0.8s cubic-bezier(0.16,1,0.3,1)",
                   }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
-                  onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
                 />
               </div>
-
-              {/* テキスト */}
-              <div>
-                <p style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.44rem", letterSpacing: "0.5em", textTransform: "uppercase", fontWeight: 300, margin: "0 0 0.6rem" }}>
-                  KOVA / 03
-                </p>
-                <h3 style={{
-                  color: "#ffffff",
-                  fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
-                  fontWeight: 900,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  lineHeight: 0.95,
-                  margin: "0 0 1.2rem",
-                }}>
-                  KOVA<br />03.
-                </h3>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: "clamp(0.65rem, 1vw, 0.8rem)", letterSpacing: "0.06em", lineHeight: 1.8, fontWeight: 300, margin: "0 0 1.8rem", maxWidth: "16rem" }}>
-                  Bold oval frame.<br />Sporty streetwear.
-                </p>
-                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem", letterSpacing: "0.06em", fontWeight: 300, margin: "0 0 1.6rem" }}>
-                  ¥2,980
-                </p>
-                <span style={{
-                  display: "inline-block",
-                  color: "rgba(255,255,255,0.55)",
-                  fontSize: "0.46rem",
-                  letterSpacing: "0.5em",
-                  textTransform: "uppercase",
-                  fontWeight: 400,
-                  borderBottom: "1px solid rgba(255,255,255,0.2)",
-                  paddingBottom: "0.15rem",
-                }}>
-                  View →
-                </span>
-              </div>
+              <p style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.44rem", letterSpacing: "0.5em", textTransform: "uppercase", fontWeight: 300, margin: "1.5rem 0 0" }}>
+                AXON / 01
+              </p>
+              <h3 style={{
+                color: "#ffffff",
+                fontSize: "clamp(1.8rem, 4vw, 3.5rem)",
+                fontWeight: 900,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                lineHeight: 0.95,
+                margin: "0.6rem 0 1.2rem",
+              }}>
+                AXON<br />01.
+              </h3>
+              <span style={{
+                display: "inline-block",
+                color: "rgba(255,255,255,0.55)",
+                fontSize: "0.46rem",
+                letterSpacing: "0.5em",
+                textTransform: "uppercase",
+                fontWeight: 400,
+                borderBottom: "1px solid rgba(255,255,255,0.2)",
+                paddingBottom: "0.15rem",
+              }}>
+                View →
+              </span>
             </Link>
           </div>
         </Reveal>
