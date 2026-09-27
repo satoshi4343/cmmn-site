@@ -4,6 +4,7 @@ import { use, useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { getProduct, ALL_PRODUCTS, type Product } from "../../lib/products";
 import ShopifyBuyButton from "../../components/ShopifyBuyButton";
+import Navbar from "../../components/Navbar";
 import { useCurrency } from "../../context/CurrencyContext";
 import { useLanguage } from "../../context/LanguageContext";
 import { fetchProductPrices, formatPrice, type ShopifyPrice } from "../../lib/shopify";
@@ -395,31 +396,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     <main style={{ backgroundColor: BG, minHeight: "100vh", color: "#fff", fontFamily: "inherit", overflowX: "hidden" }}>
 
       {/* ─ ナビゲーション ─────────────────────────────────── */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "1rem clamp(1.5rem,5vw,4rem)",
-        backgroundColor: "rgba(6,11,20,0.9)",
-        backdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-      }}>
-        <Link href="/" style={{ textDecoration: "none" }}>
-          <span style={{ color: "#fff", fontSize: "clamp(0.9rem,2vw,1.1rem)", fontWeight: 900, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-            CMMN.
-          </span>
-        </Link>
-        <div style={{ display: "flex", gap: "clamp(1.2rem,3vw,2.5rem)" }}>
-          <Link href="/" style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.48rem", letterSpacing: "0.48em", textTransform: "uppercase", textDecoration: "none", fontWeight: 300 }}>
-            Collection
-          </Link>
-          <Link href="/store" style={{ color: "rgba(255,255,255,0.35)", fontSize: "0.48rem", letterSpacing: "0.48em", textTransform: "uppercase", textDecoration: "none", fontWeight: 300 }}>
-            Store
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* ─ パンくず ──────────────────────────────────────── */}
-      <div style={{ paddingTop: "calc(56px + 1.5rem)", padding: "calc(56px + 1.5rem) clamp(1.5rem,5vw,4rem) 0" }}>
+      <div style={{ padding: "calc(28px + clamp(3rem,5vw,4rem) + 1.5rem) clamp(1.5rem,5vw,4rem) 0" }}>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
           {[
             { label: "Home", href: "/" },
@@ -462,7 +442,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       }}>
 
         {/* ── LEFT: 画像パネル（sticky） ─────────────────── */}
-        <div className="product-img-sticky" style={{ position: "sticky", top: "calc(56px + 2rem)" }}>
+        <div className="product-img-sticky" style={{ position: "sticky", top: "calc(28px + clamp(3rem,5vw,4rem) + 2rem)" }}>
 
           {/* メイン画像 */}
           <div
