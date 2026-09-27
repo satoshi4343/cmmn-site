@@ -241,10 +241,9 @@ export default function Home() {
               <div style={{
                 position: "relative",
                 width: "100%",
-                aspectRatio: "16 / 9",
+                aspectRatio: "3 / 4",
                 backgroundColor: "#0d1120",
                 overflow: "hidden",
-                borderRadius: "2px",
               }}>
                 <video
                   src="/products/812165852.158705.mp4"
@@ -252,13 +251,11 @@ export default function Home() {
                   loop
                   muted
                   playsInline
-                  controls
                   style={{
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
                     display: "block",
-                    backgroundColor: "#0d1120",
                   }}
                 />
               </div>
