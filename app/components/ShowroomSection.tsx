@@ -35,6 +35,9 @@ function ProductCard({ product, index, displayPrice }: { product: Product; index
   const currentImg = product.variants[variantIdx]?.image;
   const showImg = currentImg && !imgError;
 
+  // 全色SOLD OUT判定
+  const allVariantsSoldOut = product.variants.length > 0 && product.variants.every(v => v.soldOut === true);
+
   return (
     <Reveal delay={index * 55}>
       <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{ cursor: "pointer" }}>
@@ -62,6 +65,7 @@ function ProductCard({ product, index, displayPrice }: { product: Product; index
                   display: "block",
                   transform: hovered ? "scale(1.03) translateY(-3px)" : "scale(1) translateY(0)",
                   transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1)",
+                  opacity: allVariantsSoldOut ? 0.5 : 1,
                 }}
               />
             ) : (
@@ -74,6 +78,26 @@ function ProductCard({ product, index, displayPrice }: { product: Product; index
               background: hovered ? "rgba(0,0,0,0.1)" : "transparent",
               transition: "background 0.4s ease",
             }} />
+
+            {/* SOLD OUT バッジ */}
+            {allVariantsSoldOut && (
+              <div style={{
+                position: "absolute", inset: 0,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                backgroundColor: "rgba(0,0,0,0.25)",
+                backdropFilter: "blur(2px)",
+              }}>
+                <span style={{
+                  color: "#ffffff",
+                  fontSize: "0.58rem",
+                  letterSpacing: "0.35em",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                }}>
+                  SOLD OUT
+                </span>
+              </div>
+            )}
           </div>
         </Link>
 

@@ -422,10 +422,10 @@ const KOVA: Product[] = [
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
-      { label: "C1", name: "Pale Pink Frame / Light Beige Lens", image: "/products/kova-02-c1.jpg" },
-      { label: "C2", name: "Black Frame / Yellow Lens",           image: "/products/kova-02-c2.jpg" },
-      { label: "C3", name: "Black Frame / Light Beige Lens",      image: "/products/kova-02-c3.jpg" },
-      { label: "C4", name: "Black Frame / Grey Lens",             image: "/products/kova-02-c4.jpg" },
+      { label: "C1", name: "Pale Pink Frame / Light Beige Lens", image: "/products/kova-02-c1.jpg", soldOut: true },
+      { label: "C2", name: "Black Frame / Yellow Lens",           image: "/products/kova-02-c2.jpg", soldOut: true },
+      { label: "C3", name: "Black Frame / Light Beige Lens",      image: "/products/kova-02-c3.jpg", soldOut: true },
+      { label: "C4", name: "Black Frame / Grey Lens",             image: "/products/kova-02-c4.jpg", soldOut: true },
     ],
     description: "Slim oval sunglasses with a clean vintage-inspired fashion look.",
     detailRows: [
@@ -483,8 +483,8 @@ const KOVA: Product[] = [
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
-      { label: "C1", name: "Leopard Frame / Brown Lens",    image: "/products/kova-04-c1.jpg" },
-      { label: "C2", name: "Black Frame / Black-Grey Lens", image: "/products/kova-04-c2.jpg" },
+      { label: "C1", name: "Leopard Frame / Brown Lens",    image: "/products/kova-04-c1.jpg", soldOut: true },
+      { label: "C2", name: "Black Frame / Black-Grey Lens", image: "/products/kova-04-c2.jpg", soldOut: true },
     ],
     description: "Cat eye sunglasses with a sweet, party-ready look.",
     detailRows: [
