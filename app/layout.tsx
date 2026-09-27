@@ -4,9 +4,7 @@ import { cookies } from "next/headers";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import SaleBanner from "./components/SaleBanner";
-import LanguageSelector from "./components/LanguageSelector";
 import { CurrencyProvider, type Country } from "./context/CurrencyContext";
-import { LanguageProvider } from "./context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,14 +36,11 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" style={{ overflowX: "hidden", maxWidth: "100vw" }}>
-        <LanguageProvider>
-          <LanguageSelector />
-          <CurrencyProvider initialCountry={initialCountry}>
-            <SaleBanner />
-            <Navbar />
-            {children}
-          </CurrencyProvider>
-        </LanguageProvider>
+        <CurrencyProvider initialCountry={initialCountry}>
+          <SaleBanner />
+          <Navbar />
+          {children}
+        </CurrencyProvider>
       </body>
     </html>
   );
