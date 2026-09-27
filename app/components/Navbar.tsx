@@ -17,6 +17,44 @@ const linkStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
+function CurrencyToggle({ style }: { style?: React.CSSProperties }) {
+  const { currency, setCurrency } = useCurrency();
+  const toggle = () => setCurrency(currency === "JPY" ? "USD" : "JPY");
+  return (
+    <button
+      onClick={toggle}
+      style={{
+        background: "none",
+        border: "1px solid rgba(255,255,255,0.25)",
+        borderRadius: "2px",
+        cursor: "pointer",
+        padding: "0.18rem 0.55rem",
+        display: "flex",
+        alignItems: "center",
+        gap: "0.3rem",
+        fontFamily: "inherit",
+        ...style,
+      }}
+    >
+      {(["JPY", "USD"] as Currency[]).map((c, i) => (
+        <span
+          key={c}
+          style={{
+            color: currency === c ? "#ffffff" : "rgba(255,255,255,0.3)",
+            fontSize: "0.46rem",
+            letterSpacing: "0.3em",
+            fontWeight: currency === c ? 600 : 300,
+            transition: "color 0.2s",
+          }}
+        >
+          {i === 1 && <span style={{ color: "rgba(255,255,255,0.18)", marginRight: "0.3rem" }}>|</span>}
+          {c}
+        </span>
+      ))}
+    </button>
+  );
+}
+
 function LanguageToggle({ style }: { style?: React.CSSProperties }) {
   const { language, setLanguage } = useLanguage();
   const toggle = () => setLanguage(language === "ja" ? "en" : "ja");
