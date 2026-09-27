@@ -265,6 +265,7 @@ const CORE: Product[] = [
     number: "01",
     code: "CORE / 01",
     tagline: "Classic daily sunglasses with a clean, sharp silhouette.",
+    taglineJa: "クラシックな日常用サングラス、クリーンで鋭いシルエット。",
     price: "¥4,980",
     defaultVariantIndex: 0,    // C1 をデフォルト表示
     variants: [
@@ -274,6 +275,7 @@ const CORE: Product[] = [
       { label: "C4", name: "Black Frame / Clear Lens",       image: "/products/core-01-c4.jpg" },
     ],
     description: "Classic daily sunglasses with a clean, sharp silhouette.",
+    descriptionJa: "クラシックな日常用サングラス、クリーンで鋭いシルエット。",
     detailRows: [
       { label: "Frame",   value: "Polycarbonate (PC)" },
       { label: "Lens",    value: "Acrylic (AC) / UV400 protection" },
@@ -281,6 +283,14 @@ const CORE: Product[] = [
       { label: "Style",   value: "Special-shaped fashion sunglasses" },
       { label: "Fit",     value: "Adult / Unisex" },
       { label: "Package", value: "1 pair of sunglasses" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム",   value: "ポリカーボネート (PC)" },
+      { label: "レンズ",     value: "アクリル (AC) / UV400保護" },
+      { label: "仕上げ",     value: "反射防止コーティング" },
+      { label: "スタイル",   value: "特殊形状ファッションサングラス" },
+      { label: "フィット感", value: "大人用 / ユニセックス" },
+      { label: "パッケージ", value: "サングラス1ペア" },
     ],
     sizeRows: [
       { label: "Total Width",   value: "150 mm" },
@@ -297,6 +307,7 @@ const CORE: Product[] = [
     number: "02",
     code: "CORE / 02",
     tagline: "Sleek wrap-style silhouette with lightweight performance fit.",
+    taglineJa: "洗練されたラップスタイルシルエット、軽量パフォーマンスフィット。",
     price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
@@ -308,12 +319,20 @@ const CORE: Product[] = [
       { label: "C6", name: "Black Frame / Brown Lens",              image: "/products/core-02-c6.jpg" },
     ],
     description: "Sleek wrap-style sunglasses with a lightweight fit and sharp modern look.",
+    descriptionJa: "洗練されたラップスタイルサングラス、軽量フィットとシャープなモダンルック。",
     detailRows: [
       { label: "Frame",   value: "Lightweight resin (PC)" },
       { label: "Lens",    value: "Acrylic / UV400 protection" },
       { label: "Finish",  value: "Anti-reflective coating" },
       { label: "Style",   value: "Wraparound sports sunglasses" },
       { label: "Fit",     value: "Adult / Unisex" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム",   value: "軽量樹脂 (PC)" },
+      { label: "レンズ",     value: "アクリル / UV400保護" },
+      { label: "仕上げ",     value: "反射防止コーティング" },
+      { label: "スタイル",   value: "ラップアラウンドスポーツサングラス" },
+      { label: "フィット感", value: "大人用 / ユニセックス" },
     ],
     sizeRows: [
       { label: "Total Width",   value: "138 mm" },
@@ -330,6 +349,7 @@ const CORE: Product[] = [
     number: "03",
     code: "CORE / 03",
     tagline: "Coming soon.",
+    taglineJa: "近日公開。",
     price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
@@ -338,7 +358,9 @@ const CORE: Product[] = [
       { label: "C3", name: "—", image: "/products/core-03-c3.jpg" },
     ],
     description: "Details coming soon.",
+    descriptionJa: "詳細は近日公開。",
     detailRows: [],
+    detailRowsJa: [],
     sizeRows: [],
     shopifyId: "9262952382697",
   },
@@ -348,6 +370,7 @@ const CORE: Product[] = [
     number: "04",
     code: "CORE / 04",
     tagline: "Bold square sunglasses designed for sports, driving, and everyday outdoor style.",
+    taglineJa: "スポーツ、ドライブ、日常的なアウトドアスタイル向けに設計された大胆なスクエアサングラス。",
     price: "¥4,980",
     defaultVariantIndex: 0,
     variants: [
@@ -357,6 +380,7 @@ const CORE: Product[] = [
       { label: "C4", name: "Gunmetal Frame / Clear Silver Lens", image: "/products/core-04-c4.jpg" },
     ],
     description: "Bold square sunglasses designed for sports, driving, and everyday outdoor style.",
+    descriptionJa: "スポーツ、ドライブ、日常的なアウトドアスタイル向けに設計された大胆なスクエアサングラス。",
     detailRows: [
       { label: "Frame",    value: "Polycarbonate (PC)" },
       { label: "Lens",     value: "Acrylic (AC) / UV protection" },
@@ -366,6 +390,16 @@ const CORE: Product[] = [
       { label: "Fit",      value: "Adult / Unisex" },
       { label: "Weight",   value: "37.7g" },
       { label: "Package",  value: "1 pair of sunglasses" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム",   value: "ポリカーボネート (PC)" },
+      { label: "レンズ",     value: "アクリル (AC) / UV保護" },
+      { label: "機能",       value: "グレア低減と衝撃耐性設計" },
+      { label: "スタイル",   value: "スクエアスポーツサングラス" },
+      { label: "用途",       value: "サイクリング、ドライブ、フィッシング、ランニング、旅行、ビーチ、アウトドア活動" },
+      { label: "フィット感", value: "大人用 / ユニセックス" },
+      { label: "重量",       value: "37.7g" },
+      { label: "パッケージ", value: "サングラス1ペア" },
     ],
     sizeRows: [
       { label: "Total Width",   value: "150 mm" },
@@ -388,6 +422,7 @@ const KOVA: Product[] = [
     number: "01",
     code: "KOVA / 01",
     tagline: "Slim rectangle sunglasses with a sharp outdoor-ready Y2K look.",
+    taglineJa: "シャープなアウトドア対応Y2Kルック、スリムな矩形サングラス。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -395,6 +430,7 @@ const KOVA: Product[] = [
       { label: "C2", name: "Black Frame / Silver Lens", image: "/products/kova-01-c2.jpg", soldOut: true },
     ],
     description: "Slim rectangle sunglasses with a sharp outdoor-ready Y2K look.",
+    descriptionJa: "シャープなアウトドア対応Y2Kルック、スリムな矩形サングラス。",
     detailRows: [
       { label: "Frame",        value: "Polycarbonate" },
       { label: "Lens",         value: "Polycarbonate / UV400 protection" },
@@ -403,6 +439,15 @@ const KOVA: Product[] = [
       { label: "Use",          value: "Outdoor wear and daily styling" },
       { label: "Fit",          value: "Adult / Women" },
       { label: "Package",      value: "1 pair of sunglasses" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム",       value: "ポリカーボネート" },
+      { label: "レンズ",         value: "ポリカーボネート / UV400保護" },
+      { label: "レンズ機能",     value: "ミラーとグラデーションレンズ" },
+      { label: "スタイル",       value: "スリムな矩形ファッションサングラス" },
+      { label: "用途",           value: "アウトドアウェアと日常的なスタイリング" },
+      { label: "フィット感",     value: "大人用 / レディース" },
+      { label: "パッケージ",     value: "サングラス1ペア" },
     ],
     sizeRows: [
       { label: "Total Width",   value: "145 mm" },
@@ -419,6 +464,7 @@ const KOVA: Product[] = [
     number: "02",
     code: "KOVA / 02",
     tagline: "Slim oval sunglasses with a clean vintage-inspired fashion look.",
+    taglineJa: "クリーンでヴィンテージインスパイアされたファッションルック、スリムなオーバルサングラス。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -428,11 +474,18 @@ const KOVA: Product[] = [
       { label: "C4", name: "Black Frame / Grey Lens",             image: "/products/kova-02-c4.jpg", soldOut: true },
     ],
     description: "Slim oval sunglasses with a clean vintage-inspired fashion look.",
+    descriptionJa: "クリーンでヴィンテージインスパイアされたファッションルック、スリムなオーバルサングラス。",
     detailRows: [
       { label: "Frame", value: "Acetate" },
       { label: "Lens",  value: "Plastic / UV400 protection" },
       { label: "Style", value: "Oval sunglasses" },
       { label: "Fit",   value: "Adult / Women" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム", value: "アセテート" },
+      { label: "レンズ",   value: "プラスチック / UV400保護" },
+      { label: "スタイル", value: "オーバルサングラス" },
+      { label: "フィット感", value: "大人用 / レディース" },
     ],
     sizeRows: [
       { label: "Total Width",   value: "142 mm" },
@@ -449,6 +502,7 @@ const KOVA: Product[] = [
     number: "03",
     code: "KOVA / 03",
     tagline: "Y2K retro wrap-around sunglasses built for streetwear, driving, and outdoor style.",
+    taglineJa: "ストリートウェア、ドライビング、アウトドアスタイル向けに設計されたY2Kレトロラップアラウンドサングラス。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -458,6 +512,7 @@ const KOVA: Product[] = [
       { label: "C4", name: "Leopard Print Frame / Grey Lens", image: "/products/kova-03-c4.jpg" },
     ],
     description: "Y2K retro wrap-around sunglasses built for streetwear, driving, and outdoor style.",
+    descriptionJa: "ストリートウェア、ドライビング、アウトドアスタイル向けに設計されたY2Kレトロラップアラウンドサングラス。",
     detailRows: [
       { label: "Frame",    value: "Plastic / Polycarbonate-style lightweight frame" },
       { label: "Lens",     value: "Polycarbonate / UV400 protection" },
@@ -467,6 +522,16 @@ const KOVA: Product[] = [
       { label: "Fit",      value: "Adult / Unisex" },
       { label: "Use",      value: "Daily wear, cycling, driving, beach, travel, and outdoor activities" },
       { label: "Package",  value: "Sunglasses only" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム",     value: "プラスチック / ポリカーボネートスタイル軽量フレーム" },
+      { label: "レンズ",       value: "ポリカーボネート / UV400保護" },
+      { label: "レンズ機能",   value: "グラデーションミラーレンズ" },
+      { label: "デザイン",     value: "Y2Kレトロラップアラウンド矩形フレーム" },
+      { label: "機能",         value: "防風、グレア低減、アウトドア対応" },
+      { label: "フィット感",   value: "大人用 / ユニセックス" },
+      { label: "用途",         value: "日常的な着用、サイクリング、ドライブ、ビーチ、旅行、アウトドア活動" },
+      { label: "パッケージ",   value: "サングラスのみ" },
     ],
     sizeRows: [
       { label: "Lens Width",  value: "66 mm" },
@@ -480,6 +545,7 @@ const KOVA: Product[] = [
     number: "04",
     code: "KOVA / 04",
     tagline: "Cat eye sunglasses with a sweet, party-ready look.",
+    taglineJa: "甘くてパーティー対応ルック、キャットアイサングラス。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -487,12 +553,20 @@ const KOVA: Product[] = [
       { label: "C2", name: "Black Frame / Black-Grey Lens", image: "/products/kova-04-c2.jpg", soldOut: true },
     ],
     description: "Cat eye sunglasses with a sweet, party-ready look.",
+    descriptionJa: "甘くてパーティー対応ルック、キャットアイサングラス。",
     detailRows: [
       { label: "Frame", value: "Polycarbonate" },
       { label: "Lens",  value: "Polycarbonate / UV400 protection" },
       { label: "Style", value: "Cat Eye" },
       { label: "Fit",   value: "Adult / Women" },
       { label: "Use",   value: "Party / Daily styling" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム",   value: "ポリカーボネート" },
+      { label: "レンズ",     value: "ポリカーボネート / UV400保護" },
+      { label: "スタイル",   value: "キャットアイ" },
+      { label: "フィット感", value: "大人用 / レディース" },
+      { label: "用途",       value: "パーティー / 日常的なスタイリング" },
     ],
     sizeRows: [
       { label: "Lens Width",    value: "50 mm" },
