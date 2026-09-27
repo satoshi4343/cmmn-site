@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getProduct, ALL_PRODUCTS, type Product } from "../../lib/products";
 import ShopifyBuyButton from "../../components/ShopifyBuyButton";
 import { useCurrency } from "../../context/CurrencyContext";
+import { useLanguage } from "../../context/LanguageContext";
 import { fetchProductPrices, formatPrice, type ShopifyPrice } from "../../lib/shopify";
 
 const BG = "#060b14";
@@ -335,6 +336,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   // Shopify在庫に基づくsoldOut状態（インデックス順）
   const [shopifySoldOut, setShopifySoldOut] = useState<boolean[]>([]);
   const { currency, country } = useCurrency();
+  const { language } = useLanguage();
   const [shopifyPrice, setShopifyPrice] = useState<ShopifyPrice | null>(null);
 
   const related = ALL_PRODUCTS
@@ -676,7 +678,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           {/* アコーディオン: Description */}
           <Accordion title="Description" defaultOpen>
             <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.66rem", letterSpacing: "0.04em", lineHeight: 1.9, fontWeight: 300, margin: 0 }}>
-              {product.description}
+              {language === "ja" && product.descriptionJa ? product.descriptionJa : product.description}
             </p>
           </Accordion>
 
@@ -684,7 +686,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           {product.detailRows.length > 0 && (
             <Accordion title="Details">
               <div>
-                {product.detailRows.map(row => (
+                {(language === "ja" && product.detailRowsJa ? product.detailRowsJa : product.detailRows).map(row => (
                   <SpecRow key={row.label} label={row.label} value={row.value} />
                 ))}
               </div>
@@ -695,7 +697,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           {product.sizeRows.length > 0 && (
             <Accordion title="Size">
               <div>
-                {product.sizeRows.map(row => (
+                {(language === "ja" && product.sizeRowsJa ? product.sizeRowsJa : product.sizeRows).map(row => (
                   <SpecRow key={row.label} label={row.label} value={row.value} />
                 ))}
               </div>

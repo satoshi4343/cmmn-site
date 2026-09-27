@@ -28,12 +28,16 @@ export interface Product {
   number: string;              // "01" | "02" ...
   code: string;                // "CORE / 01" — 商品名として使用
   tagline: string;
+  taglineJa?: string;          // Japanese tagline
   price: string;
   defaultVariantIndex: number;
   variants: ColorVariant[];
   description: string;
+  descriptionJa?: string;      // Japanese description
   detailRows: SpecRow[];
+  detailRowsJa?: SpecRow[];    // Japanese detail rows
   sizeRows: SpecRow[];
+  sizeRowsJa?: SpecRow[];      // Japanese size rows
   shopifyId?: string;
 }
 
@@ -68,6 +72,7 @@ const AXON: Product[] = [
     number: "01",
     code: "AXON / 01",
     tagline: "A narrow rectangular frame with a low-profile silhouette, designed for a sharp everyday look.",
+    taglineJa: "狭い矩形フレームと低プロファイルのシルエットで、鋭いエッジの日常を演出。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -78,6 +83,7 @@ const AXON: Product[] = [
       { label: "C5", name: "Clear Pink",    image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/AXON01_Pink_square_unchanged.png" },
     ],
     description: "A narrow rectangular frame with a low-profile silhouette, designed for a sharp everyday look.",
+    descriptionJa: "狭い矩形フレームと低プロファイルのシルエットで、鋭いエッジの日常を演出。",
     detailRows: [
       { label: "Frame",         value: "Plastic" },
       { label: "Lens Material", value: "Polycarbonate" },
@@ -85,9 +91,20 @@ const AXON: Product[] = [
       { label: "Style",         value: "Rectangle" },
       { label: "Fit",           value: "Unisex" },
     ],
+    detailRowsJa: [
+      { label: "フレーム",     value: "プラスチック" },
+      { label: "レンズ素材",   value: "ポリカーボネート" },
+      { label: "レンズ",       value: "グラデーション / UV400" },
+      { label: "スタイル",     value: "矩形" },
+      { label: "フィット感",   value: "ユニセックス" },
+    ],
     sizeRows: [
       { label: "Lens Width",  value: "65 mm" },
       { label: "Lens Height", value: "39 mm" },
+    ],
+    sizeRowsJa: [
+      { label: "レンズ幅",     value: "65 mm" },
+      { label: "レンズ高さ",   value: "39 mm" },
     ],
     shopifyId: "9347880452329",
   },
