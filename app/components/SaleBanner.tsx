@@ -23,12 +23,14 @@ export default function SaleBanner() {
         left: 0,
         right: 0,
         zIndex: 300,
+        width: "100%",
         height: `${BANNER_H}px`,
         backgroundColor: "#060b14",
         borderBottom: "1px solid rgba(255,255,255,0.1)",
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
+        boxSizing: "border-box",
       }}>
         <div className="cmmn-banner-track">
           <p style={textStyle}>{TEXT}</p>
