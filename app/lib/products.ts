@@ -28,12 +28,16 @@ export interface Product {
   number: string;              // "01" | "02" ...
   code: string;                // "CORE / 01" — 商品名として使用
   tagline: string;
+  taglineJa?: string;
   price: string;
   defaultVariantIndex: number;
   variants: ColorVariant[];
   description: string;
+  descriptionJa?: string;
   detailRows: SpecRow[];
+  detailRowsJa?: SpecRow[];
   sizeRows: SpecRow[];
+  sizeRowsJa?: SpecRow[];
   shopifyId?: string;
 }
 
