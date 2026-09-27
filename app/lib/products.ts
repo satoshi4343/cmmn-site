@@ -114,6 +114,7 @@ const AXON: Product[] = [
     number: "02",
     code: "AXON / 02",
     tagline: "A bold rectangular frame with a wide, structured silhouette, designed for a sharp everyday look.",
+    taglineJa: "大胆な矩形フレームと広く構造化されたシルエットで、シャープな日常を演出。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -122,6 +123,7 @@ const AXON: Product[] = [
       { label: "C3", name: "Black / Orange", image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/S6f0b7834b9994038bb15691fac8096f69.webp" },
     ],
     description: "A bold rectangular frame with a structured polycarbonate construction and UV400 lenses. Available in C1 Black / Gray, C2 Black / Brown, and C3 Black / Orange.",
+    descriptionJa: "大胆な矩形フレームと構造化されたポリカーボネート素材、UV400レンズ搭載。C1ブラック/グレー、C2ブラック/ブラウン、C3ブラック/オレンジから選べます。",
     detailRows: [
       { label: "Frame",         value: "Polycarbonate" },
       { label: "Lens Material", value: "Polycarbonate" },
@@ -130,12 +132,27 @@ const AXON: Product[] = [
       { label: "Style",         value: "Rectangle" },
       { label: "Fit",           value: "Unisex" },
     ],
+    detailRowsJa: [
+      { label: "フレーム",     value: "ポリカーボネート" },
+      { label: "レンズ素材",   value: "ポリカーボネート" },
+      { label: "レンズ",       value: "UV400" },
+      { label: "構造",         value: "フルフレーム" },
+      { label: "スタイル",     value: "矩形" },
+      { label: "フィット感",   value: "ユニセックス" },
+    ],
     sizeRows: [
       { label: "Total Width",    value: "146 mm" },
       { label: "Lens Width",     value: "67 mm" },
       { label: "Lens Height",    value: "39 mm" },
       { label: "Bridge",         value: "13 mm" },
       { label: "Temple Length",  value: "155 mm" },
+    ],
+    sizeRowsJa: [
+      { label: "総幅",           value: "146 mm" },
+      { label: "レンズ幅",       value: "67 mm" },
+      { label: "レンズ高さ",     value: "39 mm" },
+      { label: "ブリッジ",       value: "13 mm" },
+      { label: "テンプル長",     value: "155 mm" },
     ],
     shopifyId: "9346524807401",
   },
@@ -145,6 +162,7 @@ const AXON: Product[] = [
     number: "03",
     code: "AXON / 03",
     tagline: "A rimless rectangular frame with a refined metal construction and decorative temple detailing.",
+    taglineJa: "洗練されたメタル製のリムレス矩形フレーム、装飾的なテンプルディテール付き。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -162,6 +180,7 @@ const AXON: Product[] = [
       },
     ],
     description: "A rimless rectangular frame with a refined metal construction and decorative temple detailing.",
+    descriptionJa: "洗練されたメタル素材のリムレス矩形フレーム、装飾的なテンプルディテール付き。",
     detailRows: [
       { label: "Frame",         value: "Copper" },
       { label: "Lens Material", value: "Plastic" },
@@ -169,12 +188,26 @@ const AXON: Product[] = [
       { label: "Style",         value: "Rectangle" },
       { label: "Lens Color",    value: "Clear" },
     ],
+    detailRowsJa: [
+      { label: "フレーム",     value: "銅" },
+      { label: "レンズ素材",   value: "プラスチック" },
+      { label: "構造",         value: "リムレス" },
+      { label: "スタイル",     value: "矩形" },
+      { label: "レンズカラー", value: "クリア" },
+    ],
     sizeRows: [
       { label: "Total Width",   value: "150 mm" },
       { label: "Lens Width",    value: "53 mm" },
       { label: "Lens Height",   value: "34 mm" },
       { label: "Bridge",        value: "18 mm" },
       { label: "Temple Length", value: "148 mm" },
+    ],
+    sizeRowsJa: [
+      { label: "総幅",         value: "150 mm" },
+      { label: "レンズ幅",     value: "53 mm" },
+      { label: "レンズ高さ",   value: "34 mm" },
+      { label: "ブリッジ",     value: "18 mm" },
+      { label: "テンプル長",   value: "148 mm" },
     ],
     shopifyId: "9346524479721",
   },
@@ -184,6 +217,7 @@ const AXON: Product[] = [
     number: "04",
     code: "AXON / 04",
     tagline: "A compact cat-eye frame with a sharp, sculpted silhouette, designed for a distinctive everyday look.",
+    taglineJa: "コンパクトなキャットアイフレーム、鋭く彫刻的なシルエットで独特な日常を演出。",
     price: "¥2,980",
     defaultVariantIndex: 0,
     variants: [
@@ -197,11 +231,18 @@ const AXON: Product[] = [
       { label: "C8", name: "Black / Blue",   image: "https://cdn.shopify.com/s/files/1/0805/2047/8953/files/S69ea6e5497da4720a21dba1a76cf027f5.webp?v=1784608136" },
     ],
     description: "A compact cat-eye frame with an alloy construction, plastic lenses, and a sharp sculpted silhouette. Available in selected CMMN. colorways.",
+    descriptionJa: "コンパクトなキャットアイフレーム、合金素材とプラスチックレンズ、鋭く彫刻的なシルエット。選定されたCMMN.カラーウェイで利用可能。",
     detailRows: [
       { label: "Frame",         value: "Alloy" },
       { label: "Lens Material", value: "Plastic" },
       { label: "Style",         value: "Cat Eye" },
       { label: "Fit",           value: "Unisex" },
+    ],
+    detailRowsJa: [
+      { label: "フレーム",     value: "合金" },
+      { label: "レンズ素材",   value: "プラスチック" },
+      { label: "スタイル",     value: "キャットアイ" },
+      { label: "フィット感",   value: "ユニセックス" },
     ],
     sizeRows: [
       { label: "Total Width",  value: "148 mm" },
