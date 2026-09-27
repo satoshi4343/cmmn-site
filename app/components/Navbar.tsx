@@ -278,8 +278,9 @@ export default function Navbar() {
               {label}
             </a>
           ))}
-          <div style={{ marginTop: "2rem" }}>
+          <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", alignItems: "center" }}>
             <CurrencyToggle style={{ borderColor: "rgba(255,255,255,0.15)" }} />
+            <LanguageToggle style={{ borderColor: "rgba(255,255,255,0.15)" }} />
           </div>
         </div>
       )}
