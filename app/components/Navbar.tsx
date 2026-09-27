@@ -28,12 +28,12 @@ function CurrencyToggle({ style }: { style?: React.CSSProperties }) {
         border: "1px solid rgba(255,255,255,0.25)",
         borderRadius: "2px",
         cursor: "pointer",
-        padding: "0.12rem 0.4rem",
+        padding: "0.14rem 0.45rem",
         display: "flex",
         alignItems: "center",
-        gap: "0.2rem",
+        gap: "0.22rem",
         fontFamily: "inherit",
-        fontSize: "0.42rem",
+        fontSize: "0.44rem",
         whiteSpace: "nowrap",
         ...style,
       }}
@@ -43,7 +43,7 @@ function CurrencyToggle({ style }: { style?: React.CSSProperties }) {
           key={c}
           style={{
             color: currency === c ? "#ffffff" : "rgba(255,255,255,0.3)",
-            fontSize: "0.46rem",
+            fontSize: "0.42rem",
             letterSpacing: "0.3em",
             fontWeight: currency === c ? 600 : 300,
             transition: "color 0.2s",
@@ -68,13 +68,13 @@ function LanguageToggle({ style }: { style?: React.CSSProperties }) {
         border: "1px solid rgba(255,255,255,0.25)",
         borderRadius: "2px",
         cursor: "pointer",
-        padding: "0.12rem 0.4rem",
+        padding: "0.14rem 0.45rem",
         display: "flex",
         alignItems: "center",
-        gap: "0.2rem",
+        gap: "0.22rem",
         fontFamily: "inherit",
         color: "#ffffff",
-        fontSize: "0.42rem",
+        fontSize: "0.44rem",
         whiteSpace: "nowrap",
         ...style,
       }}
@@ -84,7 +84,7 @@ function LanguageToggle({ style }: { style?: React.CSSProperties }) {
           key={l}
           style={{
             color: (language === "ja" && l === "JA") || (language === "en" && l === "EN") ? "#ffffff" : "rgba(255,255,255,0.3)",
-            fontSize: "0.46rem",
+            fontSize: "0.42rem",
             letterSpacing: "0.3em",
             fontWeight: (language === "ja" && l === "JA") || (language === "en" && l === "EN") ? 600 : 300,
             transition: "color 0.2s",
