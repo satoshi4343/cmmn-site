@@ -23,7 +23,6 @@ export default function HeroScene() {
         style={{
           objectFit: "cover",
           objectPosition: "center 20%",
-          transform: "scale(1.04)",
           transition: "opacity 2.6s cubic-bezier(0.4, 0, 0.2, 1)",
           opacity: showWith ? 0 : 1,
         }}
@@ -38,7 +37,6 @@ export default function HeroScene() {
         style={{
           objectFit: "cover",
           objectPosition: "center 20%",
-          transform: "scale(1.04)",
           transition: "opacity 2.6s cubic-bezier(0.4, 0, 0.2, 1)",
           opacity: showWith ? 1 : 0,
         }}
